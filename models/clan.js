@@ -3,18 +3,20 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Nation extends Model {
+  class Clan extends Model {
     static associate(models) {
       // define association here
     }
   };
-  Nation.init({
+  Clan.init({
     name: DataTypes.STRING,
-    abbreviation: DataTypes.STRING
+    tag: DataTypes.STRING,
+    realmId: DataTypes.INTEGER,
+    color: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Nation',
-    tableName: 'nations',
+    modelName: 'Clan',
+    tableName: 'clans',
   });
-  return Nation;
+  return Clan;
 };
