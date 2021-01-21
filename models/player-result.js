@@ -4,21 +4,30 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class PlayerResult extends Model {
-    static associate(models) {
-      // define association here
+    static associate({ Battle, Clan, ClanResult, Player, Ship }) {
+      PlayerResult.belongsTo(Battle, { as: 'battle' });
+      PlayerResult.belongsTo(Clan, { as: 'clan' });
+      PlayerResult.belongsTo(ClanResult, { as: 'clanResult' });
+      PlayerResult.belongsTo(Player, { as: 'player' });
+      PlayerResult.belongsTo(Ship, {as: 'ship' });
     }
   };
   PlayerResult.init({
-    shipId: DataTypes.INTEGER,
-    clanId: DataTypes.INTEGER,
-    playerId: DataTypes.INTEGER,
-    clanResultId: DataTypes.INTEGER,
+    // attributes
+    survived: DataTypes.BOOLEAN,
+
+    // foreign keys
     battleId: DataTypes.INTEGER,
-    survived: DataTypes.BOOLEAN
+    clanId: DataTypes.INTEGER,
+    clanResultId: DataTypes.INTEGER,
+    playerId: DataTypes.INTEGER,
+    shipId: DataTypes.INTEGER,
+
   }, {
     sequelize,
     modelName: 'PlayerResult',
     tableName: 'playerResults',
+    timestamps: false,
   });
   return PlayerResult;
 };

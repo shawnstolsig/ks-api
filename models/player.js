@@ -4,8 +4,10 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Player extends Model {
-    static associate(models) {
-      // define association here
+    static associate({ PlayerResult }) {
+      Player.hasMany(PlayerResult, {
+        foreignKey: 'playerId'
+      })
     }
   };
   Player.init({
@@ -16,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Player',
     tableName: 'players',
+    timestamps: false,
   });
   return Player;
 };

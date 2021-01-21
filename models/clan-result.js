@@ -4,8 +4,10 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class ClanResult extends Model {
-    static associate(models) {
-      // define association here
+    static associate({ PlayerResult }) {
+      ClanResult.hasMany(PlayerResult, {
+        foreignKey: 'clanResultId'
+      });
     }
   };
   ClanResult.init({
@@ -22,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'ClanResult',
     tableName: 'clanResults',
+    timestamps: false,
   });
   return ClanResult;
 };

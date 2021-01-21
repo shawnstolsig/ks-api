@@ -4,8 +4,10 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Battle extends Model {
-    static associate(models) {
-      // define association here
+    static associate({ PlayerResult }) {
+      Battle.hasMany(PlayerResult, {
+        foreignKey: 'battleId'
+      });
     }
   };
   Battle.init({

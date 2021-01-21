@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Map',
     tableName: 'maps',
+    timestamps: false,
   });
   return Map;
 };
