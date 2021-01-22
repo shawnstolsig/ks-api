@@ -4,14 +4,28 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Player extends Model {
-    static associate({ PlayerResult }) {
-      Player.hasMany(PlayerResult, {
-        foreignKey: 'playerId'
+    static associate({ Clan, PlayerResult, Realm }) {
+
+      Player.hasMany(PlayerResult, { foreignKey: 'playerId' })
+
+      Player.belongsTo(Clan, {
+        as: 'members',
+        foreignKey: 'clanId'
       })
+
+      Player.belongsTo(Realm, {
+        as: 'players',
+        foreignKey: 'realmId',
+      })
+
+
     }
   };
   Player.init({
+    // attributes
     name: DataTypes.STRING,
+
+    // foreign keys
     clanId: DataTypes.INTEGER,
     realmId: DataTypes.INTEGER,
   }, {

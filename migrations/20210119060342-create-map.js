@@ -4,11 +4,14 @@ module.exports = {
     await queryInterface.createTable('maps', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
       name: {
+        type: Sequelize.STRING
+      },
+      image: {
         type: Sequelize.STRING
       },
 

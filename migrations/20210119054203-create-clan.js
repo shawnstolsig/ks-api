@@ -11,8 +11,14 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      isDisbanded: {
+        type: Sequelize.BOOLEAN
+      },
       tag: {
         type: Sequelize.STRING
+      },
+      memberCount: {
+        type: Sequelize.INTEGER
       },
       realmId: {
         type: Sequelize.INTEGER

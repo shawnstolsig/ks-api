@@ -4,22 +4,37 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class ClanResult extends Model {
-    static associate({ PlayerResult }) {
-      ClanResult.hasMany(PlayerResult, {
-        foreignKey: 'clanResultId'
-      });
+    static associate({ Battle, Clan, PlayerResult }) {
+
+      ClanResult.hasMany(PlayerResult, { foreignKey: 'clanResultId' });
+
+      ClanResult.belongsTo(Battle, {
+        as: 'teams',
+        foreignKey: 'battleId'
+      })
+
+      ClanResult.belongsTo(Clan, {
+        as: 'battles',
+        foreignKey: 'clanId'
+      })
+
+      // TODO: Stage association here
+
     }
   };
   ClanResult.init({
+    // attributes
     division: DataTypes.INTEGER,
     league: DataTypes.INTEGER,
-    teamRating: DataTypes.STRING,
+    divisionRating: DataTypes.INTEGER,
     ratingDelta: DataTypes.INTEGER,
     result: DataTypes.STRING,
-    divisionRating: DataTypes.INTEGER,
-    stageId: DataTypes.INTEGER,
-    clanId: DataTypes.INTEGER,
+    teamRating: DataTypes.STRING,
+
+    // foreign keys
     battleId: DataTypes.INTEGER,
+    clanId: DataTypes.INTEGER,
+    stageId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'ClanResult',

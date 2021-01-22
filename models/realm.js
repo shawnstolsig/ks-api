@@ -4,14 +4,20 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Realm extends Model {
-    static associate(models) {
-      // define association here
+    static associate({ Battle, Clan, Player }) {
+
+      Realm.hasMany(Battle, { foreignKey: 'realmId'})
+      Realm.hasMany(Clan, { foreignKey: 'realmId' })
+      Realm.hasMany(Player, { foreignKey: 'realmId' })
+
     }
   };
   Realm.init({
-    name: DataTypes.STRING,
+    // attributes
     abbreviation: DataTypes.STRING,
+    name: DataTypes.STRING,
     domain: DataTypes.STRING
+
   }, {
     sequelize,
     modelName: 'Realm',

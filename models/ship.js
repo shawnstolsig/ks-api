@@ -6,9 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Ship extends Model {
     static associate({ ShipClass, Nation, PlayerResult }) {
 
-      Ship.hasMany(PlayerResult, {
-        foreignKey: 'shipId'
-      })
+      Ship.hasMany(PlayerResult, { foreignKey: 'shipId' })
 
       Ship.belongsTo(ShipClass, {
         foreignKey: 'shipClassId',

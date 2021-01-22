@@ -5,11 +5,26 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class PlayerResult extends Model {
     static associate({ Battle, Clan, ClanResult, Player, Ship }) {
-      PlayerResult.belongsTo(Battle, { as: 'battle' });
-      PlayerResult.belongsTo(Clan, { as: 'clan' });
-      PlayerResult.belongsTo(ClanResult, { as: 'clanResult' });
-      PlayerResult.belongsTo(Player, { as: 'player' });
-      PlayerResult.belongsTo(Ship, {as: 'ship' });
+      PlayerResult.belongsTo(Battle, {
+        as: 'battle',
+        foreignKey: 'battleId',
+      });
+      PlayerResult.belongsTo(Clan, {
+        as: 'clan',
+        foreignKey: 'clanId',
+      });
+      PlayerResult.belongsTo(ClanResult, {
+        as: 'clanResult',
+        foreignKey: 'clanResultId',
+      });
+      PlayerResult.belongsTo(Player, {
+        as: 'player',
+        foreignKey: 'playerId'
+      });
+      PlayerResult.belongsTo(Ship, {
+        as: 'ship',
+        foreignKey: 'shipId'
+      });
     }
   };
   PlayerResult.init({
