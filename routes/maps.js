@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+// erase me
 const { sequelize } = require('../models/index');
 
 router.post('/', (req, res,next) => {
