@@ -1,6 +1,5 @@
 # contains db login credentials
 config.json
-secrets.js
 
 # Logs
 logs

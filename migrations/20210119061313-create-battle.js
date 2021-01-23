@@ -4,15 +4,15 @@ module.exports = {
     await queryInterface.createTable('battles', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       mapId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       realmId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       finishedAt: {
         type: Sequelize.DATE
@@ -21,10 +21,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       arenaId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       clusterId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

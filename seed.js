@@ -1,11 +1,11 @@
 // TODO: do I need to put API hostnames in .env?
 // const { apiHostName } = require('./config/config')
-const { APP_ID } = require('./config/secrets')
+const appId = require(__dirname + '/config/config.json')['appId']
 const axios = require('axios')
 
 const apiHostName = 'http://localhost:3000'
-const mapUrl = `https://api.worldofwarships.com/wows/encyclopedia/battlearenas/?application_id=${APP_ID}`
-const shipUrl = (page) => `https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=${APP_ID}&page_no=${page}&fields=name%2Ctier%2Ctype%2Cnation`
+const mapUrl = `https://api.worldofwarships.com/wows/encyclopedia/battlearenas/?application_id=${appId}`
+const shipUrl = (page) => `https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=${appId}&page_no=${page}&fields=name%2Ctier%2Ctype%2Cnation`
 
 
 const seedMaps = async () => {
@@ -53,5 +53,5 @@ const seedShips = async () => {
         console.log(`Completed POST for ${counter} ships`)
     }
 }
-// seedMaps()
+seedMaps()
 seedShips()

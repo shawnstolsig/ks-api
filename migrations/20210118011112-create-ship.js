@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       shipClassId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       nationId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       abbreviation: {
         type: Sequelize.STRING

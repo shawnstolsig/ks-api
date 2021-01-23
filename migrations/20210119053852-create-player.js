@@ -4,18 +4,18 @@ module.exports = {
     await queryInterface.createTable('players', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       name: {
         type: Sequelize.STRING
       },
       clanId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       realmId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
 
     });

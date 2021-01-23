@@ -4,9 +4,9 @@ module.exports = {
     await queryInterface.createTable('clans', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       name: {
         type: Sequelize.STRING
@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       realmId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       color: {
         type: Sequelize.STRING

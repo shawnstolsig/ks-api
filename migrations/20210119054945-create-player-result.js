@@ -9,19 +9,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       shipId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       clanId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       playerId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       clanResultId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       battleId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       survived: {
         type: Sequelize.BOOLEAN

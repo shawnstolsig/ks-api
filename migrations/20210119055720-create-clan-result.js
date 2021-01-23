@@ -4,9 +4,9 @@ module.exports = {
     await queryInterface.createTable('clanResults', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       division: {
         type: Sequelize.INTEGER
@@ -27,13 +27,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       stageId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       clanId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       battleId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
 
     });
