@@ -10,7 +10,7 @@ router.post('/', (req, res,next) => {
 
     Object.keys(battles).forEach(async (battles) => {
         await Battle.create({
-]
+
         })
         counter++
     })

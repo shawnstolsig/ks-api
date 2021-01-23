@@ -4,7 +4,21 @@ var router = express.Router();
 const { sequelize } = require('../models/index')
 const { shipsAbbr, shipClasses, nations } = require('../data/ships')
 
-/* GET users listing. */
+router.get('/:id', async (req, res, next) => {
+    const { Ship } = sequelize.models
+    const id = req.params.id
+
+    try {
+        const ship = await Ship.findByPk(id,{
+            include: [ 'shipClass', 'nation' ]
+        })
+
+        return res.json(ship)
+    } catch (err) {
+        return res.status(500).json(err)
+    }
+});
+
 router.get('/', async (req, res, next) => {
     const { Ship } = sequelize.models
     try {
@@ -15,7 +29,6 @@ router.get('/', async (req, res, next) => {
     } catch (err) {
         return res.status(500).json(err)
     }
-
 });
 
 router.post('/', (req, res,next) => {

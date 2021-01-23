@@ -21,8 +21,15 @@ router.post('/', (req, res,next) => {
     return res.json(`hey you did it`)
 })
 
-router.get('/', (req, res, next) => {
-    return res.json('this is working')
+router.get('/', async (req, res, next) => {
+    const { Map } = sequelize.models
+
+    try {
+        const ships = await Map.findAll()
+        return res.json(ships)
+    } catch (err) {
+        return res.status(500).json(err)
+    }
 })
 
 module.exports = router;
