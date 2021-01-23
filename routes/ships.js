@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { sequelize } = require('../models/index')
+const { shipsAbbr, shipClasses, nations } = require('../data/ships')
 
 /* GET users listing. */
 router.get('/', async (req, res, next) => {
@@ -16,5 +17,26 @@ router.get('/', async (req, res, next) => {
     }
 
 });
+
+router.post('/', (req, res,next) => {
+    const { Ship } = sequelize.models;
+    const ships = req.body;
+    let counter = 0
+
+    Object.keys(ships).forEach(async (ship) => {
+        counter++
+        await Ship.create({
+            id: ship,
+            name: ships[ship].name,
+            tier: ships[ship].tier,
+            nationId: nations[ships[ship].nation],
+            shipClassId:shipClasses[ships[ship].type],
+            abbreviation: shipsAbbr[ship],
+        })
+    })
+    console.log(`Successfully posted ${counter} ships to the database.`)
+
+    return res.json(`hey you did it ships`)
+})
 
 module.exports = router;

@@ -7,9 +7,15 @@ module.exports = {
       { name: 'Japan', abbreviation: 'IJN' },
       { name: 'United States', abbreviation: 'USN' },
       { name: 'Germany', abbreviation: 'KMS' },
-      { name: 'United Kingdom', abbreviation: 'RN' },
       { name: 'Russia', abbreviation: 'USSR' },
+      { name: 'United Kingdom', abbreviation: 'RN' },
+      { name: 'Italy', abbreviation: 'ITA' },
+      { name: 'France', abbreviation: 'FR' },
       { name: 'European', abbreviation: 'EU' },
+      { name: 'Commonwealth', abbreviation: 'Commonwealth' },
+      { name: 'Pan-Asia', abbreviation: 'Pan Asia' },
+      { name: 'Pan-America', abbreviation: 'Pan America' },
+
     ]);
     await queryInterface.bulkInsert('realms', [
       { name: 'Asia', abbreviation: 'ASIA', domain: 'asia' },

@@ -6,16 +6,17 @@ const { sequelize } = require('../models/index');
 router.post('/', (req, res,next) => {
     const { Map } = sequelize.models;
     const maps = req.body;
+    let counter = 0
 
-    // iterate through all maps
     Object.keys(maps).forEach(async (map) => {
         await Map.create({
             id: map,
             image: maps[map].icon,
             name: maps[map].name,
         })
-        console.log(`Created ${map}: ${maps[map].name}`)
+        counter++
     })
+    console.log(`Successfully posted ${counter} maps to the database.`)
 
     return res.json(`hey you did it`)
 })
