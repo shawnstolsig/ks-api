@@ -2,11 +2,13 @@
 // const { apiHostName } = require('./config/config')
 const appId = require(__dirname + '/config/config.json')['appId']
 const axios = require('axios')
+const fs = require('fs')
+const path = require('path');
+const basename = path.basename(__filename);
 
 const apiHostName = 'http://localhost:3000'
 const mapUrl = `https://api.worldofwarships.com/wows/encyclopedia/battlearenas/?application_id=${appId}`
 const shipUrl = (page) => `https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=${appId}&page_no=${page}&fields=name%2Ctier%2Ctype%2Cnation`
-
 
 const seedMaps = async () => {
 
@@ -53,5 +55,37 @@ const seedShips = async () => {
         console.log(`Completed POST for ${counter} ships`)
     }
 }
-seedMaps()
-seedShips()
+
+const seedBattles = () => {
+
+    let counter = 0;
+    let jsonDir = __dirname + '/data/json/'
+
+    // filter through each
+    fs
+        .readdirSync(jsonDir)
+        .filter(file => {
+            return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-5) === '.json');
+        })
+        .forEach(async file => {
+
+            // get array of battles from json file
+            const filename = path.join(jsonDir, file)
+            const rawData = fs.readFileSync(filename)
+            const battles = JSON.parse(rawData)
+
+            // post to db
+            try {
+                await axios.post(`${apiHostName}/battles/`, battles)
+                counter += battles.length
+                console.log(`Completed POST for ${counter} battles`)
+            } catch (err) {
+                console.log(`Error posting battles to ks-api: `, err)
+            }
+        });
+
+    // TODO: figure out how to console.log total battle count here
+}
+// seedMaps()
+// seedShips()
+seedBattles()

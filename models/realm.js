@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     // attributes
     abbreviation: DataTypes.STRING,
     name: DataTypes.STRING,
-    domain: DataTypes.STRING
+    domain: DataTypes.STRING,
+    wgRealm: DataTypes.STRING,
 
   }, {
     sequelize,

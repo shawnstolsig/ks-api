@@ -17,6 +17,9 @@ module.exports = {
       domain: {
         type: Sequelize.STRING
       },
+      wgRealm: {
+        type: Sequelize.STRING
+      }
 
     });
   },
