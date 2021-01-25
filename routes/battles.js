@@ -8,6 +8,7 @@ router.post('/', (req, res,next) => {
     const battles = req.body;
     let counter = 0
 
+    // TODO: Promisify this?  How to prevent returning the response before it's done creating the entries
     Object.keys(battles).forEach(async (battle) => {
 
         const b = battles[battle]
@@ -27,20 +28,25 @@ router.post('/', (req, res,next) => {
             }
         })
 
-        await Battle.create({
-            id,
-            finishedAt,
-            arenaId,
-            clusterId,
-            season,
-            mapId: map.id,
-            realmId: realm.id
+        let [ battleResponse, created ] = await Battle.findOrCreate({
+            where: {
+                id
+            },
+            defaults: {
+                    finishedAt,
+                    arenaId,
+                    clusterId,
+                    season,
+                    mapId: map.id,
+                    realmId: realm.id
+            }
         })
-        counter++
+        if(created) {
+            counter++;
+        }
     })
-    console.log(`Successfully posted ${counter} battles to the database.`)
 
-    return res.json(`hey you did it, battles`)
+    return res.json(`Successfully posted ${counter} battles to the database.`)
 })
 
 router.get('/', (req, res, next) => {

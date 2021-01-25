@@ -76,9 +76,9 @@ const seedBattles = () => {
 
             // post to db
             try {
-                await axios.post(`${apiHostName}/battles/`, battles)
+                let response = await axios.post(`${apiHostName}/battles/`, battles)
                 counter += battles.length
-                console.log(`Completed POST for ${counter} battles`)
+                console.log(`Completed POST for ${counter} battles.  Response:`, response.data)
             } catch (err) {
                 console.log(`Error posting battles to ks-api: `, err)
             }
