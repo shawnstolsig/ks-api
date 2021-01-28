@@ -20,6 +20,9 @@ module.exports = {
       season: {
         type: Sequelize.INTEGER
       },
+      winMethod: {
+        type: Sequelize.STRING
+      },
       arenaId: {
         type: Sequelize.STRING
       },

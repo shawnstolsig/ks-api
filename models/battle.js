@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     clusterId: DataTypes.INTEGER,
     season: DataTypes.INTEGER,
     finishedAt: DataTypes.DATE,
+    winMethod: DataTypes.STRING,
 
     // foreign keys
     mapId: DataTypes.INTEGER,
