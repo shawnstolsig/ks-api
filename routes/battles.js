@@ -160,8 +160,19 @@ router.post('/', (req, res,next) => {
     return res.json(`Successfully posted ${battleCounter} battles, ${clanCounter} clans, and ${playerCounter} players to the database.`)
 })
 
-router.get('/', (req, res, next) => {
-    return res.json('this is working')
+router.get('/', async (req, res, next) => {
+    const { Battle, ClanResult } = sequelize.models
+
+    try{
+        // let battles = await Battle.findAll({
+        //     include: ['map', 'realm', { model: ClanResult }]
+        // })
+        let battles = await Battle.findAll({ include: { all: true }})
+        return res.json(battles)
+    } catch (error) {
+        return res.status(500).json({ error })
+    }
+
 })
 
 module.exports = router;
