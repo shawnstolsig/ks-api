@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const clansRouter = require('./routes/clans');
 const shipsRouter = require('./routes/ships');
 const mapsRouter = require('./routes/maps');
 const battlesRouter = require('./routes/battles')
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/clans', clansRouter);
 app.use('/ships', shipsRouter);
 app.use('/maps', mapsRouter);
 app.use('/battles', battlesRouter);

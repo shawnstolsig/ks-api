@@ -6,16 +6,16 @@ module.exports = (sequelize, DataTypes) => {
   class ClanResult extends Model {
     static associate({ Battle, Clan, PlayerResult, Stage }) {
 
-      ClanResult.hasMany(PlayerResult, { foreignKey: 'clanResultId' });
+      ClanResult.hasMany(PlayerResult, { foreignKey: 'clanResultId', as: 'players' });
       ClanResult.hasOne(Stage);
 
       ClanResult.belongsTo(Battle, {
-        as: 'teams',
+        as: 'battle',
         foreignKey: 'battleId'
       })
 
       ClanResult.belongsTo(Clan, {
-        as: 'battles',
+        as: 'clan',
         foreignKey: 'clanId'
       })
 

@@ -4,20 +4,22 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Battle extends Model {
-    static associate({ ClanResult, PlayerResult, Map, Realm }) {
 
-      Battle.hasMany(ClanResult, { foreignKey: 'battleId' });
-      Battle.hasMany(PlayerResult, { foreignKey: 'battleId' });
+    static associate({ClanResult, PlayerResult, Map, Realm}) {
+
+      Battle.hasMany(ClanResult, {foreignKey: 'battleId', as: 'teams'});
+      Battle.hasMany(PlayerResult, {foreignKey: 'battleId'});
 
       Battle.belongsTo(Map, {
         as: 'map',
         foreignKey: 'mapId'
       })
-      Battle.belongsTo(Realm,{
+      Battle.belongsTo(Realm, {
         as: 'realm',
         foreignKey: 'realmId',
       })
     }
+
   };
   Battle.init({
     // attributes

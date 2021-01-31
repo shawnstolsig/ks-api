@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       Player.belongsTo(Realm, {
-        as: 'players',
+        as: 'realm',
         foreignKey: 'realmId',
       })
 
