@@ -6,7 +6,7 @@ const getClanById = async (req, res, next) => {
 
     try {
         const clan = await Clan.findByPk(id,{
-            include: [ 'realm' ]
+            include: [ 'realm', 'members' ]
         })
 
         return res.json(clan)

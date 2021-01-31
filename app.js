@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const playersRouter = require('./routes/players');
 const clansRouter = require('./routes/clans');
 const shipsRouter = require('./routes/ships');
 const mapsRouter = require('./routes/maps');
@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/players', playersRouter);
 app.use('/clans', clansRouter);
 app.use('/ships', shipsRouter);
 app.use('/maps', mapsRouter);

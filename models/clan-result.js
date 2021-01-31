@@ -31,9 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     teamRating: DataTypes.STRING,
 
     // foreign keys
-    battleId: DataTypes.INTEGER,
-    clanId: DataTypes.INTEGER,
-    stageId: DataTypes.INTEGER,
+    battleId: DataTypes.STRING,
+    clanId: DataTypes.STRING,
+    stageId: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'ClanResult',

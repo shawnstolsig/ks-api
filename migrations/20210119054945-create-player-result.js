@@ -4,9 +4,9 @@ module.exports = {
     await queryInterface.createTable('playerResults', {
       id: {
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       shipId: {
         type: Sequelize.STRING

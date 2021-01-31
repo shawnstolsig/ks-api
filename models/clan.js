@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ ClanResult, Player, PlayerResult, Realm }) {
 
       Clan.hasMany(ClanResult, { foreignKey: 'clanId' });
-      Clan.hasMany(Player, { foreignKey: 'clanId' });
+      Clan.hasMany(Player, { foreignKey: 'clanId', as: 'members' });
       Clan.hasMany(PlayerResult, { foreignKey: 'clanId' });
 
       Clan.belongsTo(Realm, {
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     tag: DataTypes.STRING,
 
     // foreign keys
-    realmId: DataTypes.INTEGER,
+    realmId: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Clan',

@@ -39,7 +39,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       clanResultId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
     });
   },

@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     winCount: DataTypes.INTEGER,
 
     // foreign keys
-    clanResultId: DataTypes.INTEGER
+    clanResultId: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Stage',

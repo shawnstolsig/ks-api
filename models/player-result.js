@@ -32,11 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     survived: DataTypes.BOOLEAN,
 
     // foreign keys
-    battleId: DataTypes.INTEGER,
-    clanId: DataTypes.INTEGER,
-    clanResultId: DataTypes.INTEGER,
-    playerId: DataTypes.INTEGER,
-    shipId: DataTypes.INTEGER,
+    battleId: DataTypes.STRING,
+    clanId: DataTypes.STRING,
+    clanResultId: DataTypes.STRING,
+    playerId: DataTypes.STRING,
+    shipId: DataTypes.STRING,
 
   }, {
     sequelize,

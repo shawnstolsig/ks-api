@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     winMethod: DataTypes.STRING,
 
     // foreign keys
-    mapId: DataTypes.INTEGER,
-    realmId: DataTypes.INTEGER,
+    mapId: DataTypes.STRING,
+    realmId: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Battle',

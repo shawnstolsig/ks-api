@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       Player.hasMany(PlayerResult, { foreignKey: 'playerId' })
 
       Player.belongsTo(Clan, {
-        as: 'members',
+        as: 'clan',
         foreignKey: 'clanId'
       })
 
