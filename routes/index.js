@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
 router.get('/reset', async (req, res, next) => {
-  const { Battle, ClanResult, Clan, PlayerResult, Player, Stage } = sequelize.models
+  const { Battle, ClanResult, Clan, Map, PlayerResult, Player, Ship, Stage } = sequelize.models
   await Battle.destroy({
     where: {}
   })
@@ -17,10 +17,16 @@ router.get('/reset', async (req, res, next) => {
   await Clan.destroy({
     where: {}
   })
+  await Map.destroy({
+    where: {}
+  })
   await PlayerResult.destroy({
     where: {}
   })
   await Player.destroy({
+    where: {}
+  })
+  await Ship.destroy({
     where: {}
   })
   await Stage.destroy({
