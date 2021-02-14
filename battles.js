@@ -27,7 +27,7 @@ const seedBattles = () => {
             // post to db
             try {
                 let response = await axios.post(`${apiHostName}/battles/`, battles)
-                console.log(`Completed POST for one JSON containing ${battles.length} battles`)
+                console.log(`Completed POST for one JSON containing ${battles.length} battles:\n${response.data}`)
             } catch (err) {
                 console.log(`Error posting JSON file to ks-api: `, err)
             }

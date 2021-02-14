@@ -6,22 +6,6 @@ const createBattles = async (req, res, next) => {
     let clanCounter = 0
     let playerCounter = 0
 
-    // TODO: Promisify this?  How to prevent returning the response before it's done creating the entries
-    // Object.keys(battles).forEach(async (battle) => {
-    //     const { Battle } = sequelize.models;
-    //     const b = battles[battle]
-    //
-    //     // abort if battle already exists
-    //     const foundBattle = await Battle.findOne({ where: { id: b.id }})
-    //     if(foundBattle) return;
-    //
-    //     // create battle
-    //     const { clanIncrement, playerIncrement } = await createBattle(b)
-    //
-    //     clanCounter += clanIncrement
-    //     playerCounter += playerIncrement
-    //     battleCounter++
-    // })
     let battlePromises = Object.values(battles).map(checkOrCreateBattle)
     let responses = await Promise.all(battlePromises)
 
@@ -62,60 +46,28 @@ const getBattles = async (req, res, next) => {
     }
 }
 
-module.exports = {
-    createBattles,
-    getBattles
-}
+const checkOrCreateBattle = (battle) => {
+    return new Promise(async (resolve, reject) => {
+        const { Battle } = sequelize.models;
 
-// utility functions
+        // abort if battle already exists
+        const foundBattle = await Battle.findOne({ where: { id: battle.id }})
+        if(foundBattle) {
+            resolve({
+                clanIncrement: 0,
+                playerIncrement: 0,
+                battleIncrement: 0
+            })
+            return;
+        };
 
-// TODO: clean up these functions, use a loop instead
-const updatePlayer = (playerFromDb, { name, clanId }) => {
-    let needsUpdate = false;
-    if(playerFromDb.name !== name){
-        needsUpdate = true
-        playerFromDb.name = name
-    }
-    if(playerFromDb.clanId !== clanId){
-        needsUpdate = true
-        playerFromDb.clanId = clanId
-    }
-    if(needsUpdate){
-        playerFromDb.save()
-    }
-}
-
-const updateClan = (clanFromDb, {  name, isDisbanded, tag, memberCount, realmId, color }) => {
-    let needsUpdate = false;
-
-    if(clanFromDb.name !== name){
-        needsUpdate = true
-        clanFromDb.name = name
-    }
-    if(clanFromDb.isDisbanded !== isDisbanded){
-        needsUpdate = true
-        clanFromDb.isDisbanded = isDisbanded
-    }
-    if(clanFromDb.tag !== tag){
-        needsUpdate = true
-        clanFromDb.tag = tag
-    }
-    if(clanFromDb.memberCount !== memberCount){
-        needsUpdate = true
-        clanFromDb.memberCount = memberCount
-    }
-    if(clanFromDb.realmId !== realmId){
-        needsUpdate = true
-        clanFromDb.realmId = realmId
-    }
-    if(clanFromDb.color !== color){
-        needsUpdate = true
-        clanFromDb.color = color
-    }
-
-    if(needsUpdate){
-        clanFromDb.save()
-    }
+        // create battle
+        let newBattle = await createBattle(battle)
+        resolve({
+            ...newBattle,
+            battleIncrement: 1
+        })
+    })
 }
 
 const createBattle = (b) => {
@@ -174,16 +126,16 @@ const createBattle = (b) => {
             if(wasClanCreated) {
                 clanCounter++;
             }
-            // else {
-            //     updateClan(clanFromDb, {
-            //         name: clanFromJson.name,
-            //         isDisbanded: clanFromJson.claninfo.disbanded,
-            //         tag: clanFromJson.claninfo.tag,
-            //         memberCount: clanFromJson.claninfo.members_count,
-            //         realmId: clanRealm.id,
-            //         color: clanFromJson.claninfo.color,
-            //     })
-            // }
+            else {
+                updateClan(clanFromDb, {
+                    name: clanFromJson.claninfo.name,
+                    isDisbanded: clanFromJson.claninfo.disbanded,
+                    tag: clanFromJson.claninfo.tag,
+                    memberCount: clanFromJson.claninfo.members_count,
+                    realmId: clanRealm.id,
+                    color: clanFromJson.claninfo.color,
+                })
+            }
 
             // create the clanResult
             let clanResultInstance = {
@@ -248,12 +200,12 @@ const createBattle = (b) => {
                 if(wasPlayerCreated) {
                     playerCounter++;
                 }
-                // else {
-                //     updatePlayer(playerFromDb, {
-                //         name: playerFromJson.name,
-                //         clanId: clanFromDb.id.toString()
-                //     })
-                // }
+                else {
+                    updatePlayer(playerFromDb, {
+                        name: playerFromJson.name,
+                        clanId: clanFromDb.id.toString()
+                    })
+                }
 
                 let playerResultInstance = {
                     id: `B${battleId}P${playerFromDb.id}`,
@@ -287,27 +239,58 @@ const createBattle = (b) => {
         })
     })
 }
+// utility functions
+// TODO: clean up these functions, use a loop instead
+const updatePlayer = (playerFromDb, { name, clanId }) => {
+    let needsUpdate = false;
+    if(playerFromDb.name !== name){
+        needsUpdate = true
+        playerFromDb.name = name
+    }
+    if(playerFromDb.clanId !== clanId){
+        needsUpdate = true
+        playerFromDb.clanId = clanId
+    }
+    if(needsUpdate){
+        playerFromDb.save()
+    }
+}
 
-const checkOrCreateBattle = (battle) => {
-    return new Promise(async (resolve, reject) => {
-        const { Battle } = sequelize.models;
+const updateClan = (clanFromDb, {  name, isDisbanded, tag, memberCount, realmId, color }) => {
+    let needsUpdate = false;
 
-        // abort if battle already exists
-        const foundBattle = await Battle.findOne({ where: { id: battle.id }})
-        if(foundBattle) {
-            resolve({
-                clanIncrement: 0,
-                playerIncrement: 0,
-                battleIncrement: 0
-            })
-            return;
-        };
+    if(clanFromDb.name !== name){
+        needsUpdate = true
+        clanFromDb.name = name
+    }
+    if(clanFromDb.isDisbanded !== isDisbanded){
+        needsUpdate = true
+        clanFromDb.isDisbanded = isDisbanded
+    }
+    if(clanFromDb.tag !== tag){
+        needsUpdate = true
+        clanFromDb.tag = tag
+    }
+    if(clanFromDb.memberCount !== memberCount){
+        needsUpdate = true
+        clanFromDb.memberCount = memberCount
+    }
+    if(clanFromDb.realmId !== realmId){
+        needsUpdate = true
+        clanFromDb.realmId = realmId
+    }
+    if(clanFromDb.color !== color){
+        needsUpdate = true
+        clanFromDb.color = color
+    }
 
-        // create battle
-        let newBattle = await createBattle(battle)
-        resolve({
-            ...newBattle,
-            battleIncrement: 1
-        })
-    })
+    if(needsUpdate){
+        clanFromDb.save()
+    }
+}
+
+// exports
+module.exports = {
+    createBattles,
+    getBattles
 }

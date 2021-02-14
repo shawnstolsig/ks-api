@@ -93,7 +93,6 @@ const seedBattles = () => {
             }
         });
 
-    // TODO: figure out how to console.log total battle count here
 }
 
 const main = async () => {
