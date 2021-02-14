@@ -9,10 +9,9 @@ const apiHostName = 'http://localhost:3000'
 
 const seedBattles = () => {
 
-    let counter = 0;
     let jsonDir = __dirname + '/data/json/'
 
-    // filter through each
+    // iterate through each file in /data/json directory
     fs
         .readdirSync(jsonDir)
         .filter(file => {
@@ -28,21 +27,12 @@ const seedBattles = () => {
             // post to db
             try {
                 let response = await axios.post(`${apiHostName}/battles/`, battles)
-                counter += battles.length
-                console.log(`Completed POST for ${counter} battles`)
+                console.log(`Completed POST for one JSON containing ${battles.length} battles`)
             } catch (err) {
-                console.log(`Error posting battles to ks-api: `, err)
+                console.log(`Error posting JSON file to ks-api: `, err)
             }
         });
-
-    // TODO: figure out how to console.log total battle count here
 }
 
-const main = async () => {
-
-    // post battles to db
-    seedBattles()
-
-}
-main()
+seedBattles()
 

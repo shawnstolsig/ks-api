@@ -1,21 +1,130 @@
 const { sequelize } = require('../models/index');
 
-const createBattles = (req, res, next) => {
-    const { Battle, Clan, ClanResult, Map, Player, PlayerResult, Realm, Stage } = sequelize.models;
+const createBattles = async (req, res, next) => {
     const battles = req.body;
     let battleCounter = 0
     let clanCounter = 0
     let playerCounter = 0
 
     // TODO: Promisify this?  How to prevent returning the response before it's done creating the entries
-    Object.keys(battles).forEach(async (battle) => {
+    // Object.keys(battles).forEach(async (battle) => {
+    //     const { Battle } = sequelize.models;
+    //     const b = battles[battle]
+    //
+    //     // abort if battle already exists
+    //     const foundBattle = await Battle.findOne({ where: { id: b.id }})
+    //     if(foundBattle) return;
+    //
+    //     // create battle
+    //     const { clanIncrement, playerIncrement } = await createBattle(b)
+    //
+    //     clanCounter += clanIncrement
+    //     playerCounter += playerIncrement
+    //     battleCounter++
+    // })
+    let battlePromises = Object.values(battles).map(checkOrCreateBattle)
+    let responses = await Promise.all(battlePromises)
 
-        const b = battles[battle]
+    responses.forEach(({ battleIncrement, clanIncrement, playerIncrement }) => {
+        battleCounter += battleIncrement
+        clanCounter += clanIncrement
+        playerCounter += playerIncrement
+    })
+    console.log(`Successfully posted ${battleCounter} battles, ${clanCounter} clans, and ${playerCounter} players to the database.`)
+
+    return res.json(`Successfully posted ${battleCounter} battles, ${clanCounter} clans, and ${playerCounter} players to the database.`)
+}
+
+const getBattles = async (req, res, next) => {
+    const { Battle, Clan, ClanResult, Player, PlayerResult, Ship } = sequelize.models
+
+    try{
+        let battles = await Battle.findAll({
+            include: [
+                'map',
+                { model: ClanResult, as: 'teams', include: [
+                        { model: Clan,
+                            as: 'clan',
+                            include: [ 'realm' ]
+                        },
+                        { model: PlayerResult, as: 'players', include: [
+                                { model: Player, as: 'player' },
+                                'ship',
+                            ]
+                        },
+                    ]
+                },
+            ]
+        })
+        return res.json(battles)
+    } catch (error) {
+        return res.status(500).json({ error })
+    }
+}
+
+module.exports = {
+    createBattles,
+    getBattles
+}
+
+// utility functions
+
+// TODO: clean up these functions, use a loop instead
+const updatePlayer = (playerFromDb, { name, clanId }) => {
+    let needsUpdate = false;
+    if(playerFromDb.name !== name){
+        needsUpdate = true
+        playerFromDb.name = name
+    }
+    if(playerFromDb.clanId !== clanId){
+        needsUpdate = true
+        playerFromDb.clanId = clanId
+    }
+    if(needsUpdate){
+        playerFromDb.save()
+    }
+}
+
+const updateClan = (clanFromDb, {  name, isDisbanded, tag, memberCount, realmId, color }) => {
+    let needsUpdate = false;
+
+    if(clanFromDb.name !== name){
+        needsUpdate = true
+        clanFromDb.name = name
+    }
+    if(clanFromDb.isDisbanded !== isDisbanded){
+        needsUpdate = true
+        clanFromDb.isDisbanded = isDisbanded
+    }
+    if(clanFromDb.tag !== tag){
+        needsUpdate = true
+        clanFromDb.tag = tag
+    }
+    if(clanFromDb.memberCount !== memberCount){
+        needsUpdate = true
+        clanFromDb.memberCount = memberCount
+    }
+    if(clanFromDb.realmId !== realmId){
+        needsUpdate = true
+        clanFromDb.realmId = realmId
+    }
+    if(clanFromDb.color !== color){
+        needsUpdate = true
+        clanFromDb.color = color
+    }
+
+    if(needsUpdate){
+        clanFromDb.save()
+    }
+}
+
+const createBattle = (b) => {
+    return new Promise(async(resolve, reject) => {
+        const { Battle, Clan, ClanResult, Map, Player, PlayerResult, Realm, Stage } = sequelize.models;
         const battleId = b.id
 
-        // abort if battle already exists
-        const foundBattle = await Battle.findOne({ where: { id: battleId }})
-        if(foundBattle) return;
+        let clanCounter = 0
+        let playerCounter = 0
 
         // BUILD NEW BATTLE:
         // root level attributes: arena_id, finished_at, cluster_id, season_number
@@ -172,91 +281,33 @@ const createBattles = (req, res, next) => {
         }
         createdBattle.save()
 
-        battleCounter++;
-    })
-
-    return res.json(`Successfully posted ${battleCounter} battles, ${clanCounter} clans, and ${playerCounter} players to the database.`)
-}
-
-const getBattles = async (req, res, next) => {
-    const { Battle, Clan, ClanResult, Player, PlayerResult, Ship } = sequelize.models
-
-    try{
-        let battles = await Battle.findAll({
-            include: [
-                'map',
-                { model: ClanResult, as: 'teams', include: [
-                        { model: Clan,
-                            as: 'clan',
-                            include: [ 'realm' ]
-                        },
-                        { model: PlayerResult, as: 'players', include: [
-                                { model: Player, as: 'player' },
-                                'ship',
-                            ]
-                        },
-                    ]
-                },
-            ]
+        resolve({
+            clanIncrement: clanCounter,
+            playerIncrement: playerCounter
         })
-        return res.json(battles)
-    } catch (error) {
-        return res.status(500).json({ error })
-    }
+    })
 }
 
-module.exports = {
-    createBattles,
-    getBattles
-}
+const checkOrCreateBattle = (battle) => {
+    return new Promise(async (resolve, reject) => {
+        const { Battle } = sequelize.models;
 
-// utility functions
+        // abort if battle already exists
+        const foundBattle = await Battle.findOne({ where: { id: battle.id }})
+        if(foundBattle) {
+            resolve({
+                clanIncrement: 0,
+                playerIncrement: 0,
+                battleIncrement: 0
+            })
+            return;
+        };
 
-// TODO: clean up these functions, use a loop instead
-const updatePlayer = (playerFromDb, { name, clanId }) => {
-    let needsUpdate = false;
-    if(playerFromDb.name !== name){
-        needsUpdate = true
-        playerFromDb.name = name
-    }
-    if(playerFromDb.clanId !== clanId){
-        needsUpdate = true
-        playerFromDb.clanId = clanId
-    }
-    if(needsUpdate){
-        playerFromDb.save()
-    }
-}
-
-const updateClan = (clanFromDb, {  name, isDisbanded, tag, memberCount, realmId, color }) => {
-    let needsUpdate = false;
-
-    if(clanFromDb.name !== name){
-        needsUpdate = true
-        clanFromDb.name = name
-    }
-    if(clanFromDb.isDisbanded !== isDisbanded){
-        needsUpdate = true
-        clanFromDb.isDisbanded = isDisbanded
-    }
-    if(clanFromDb.tag !== tag){
-        needsUpdate = true
-        clanFromDb.tag = tag
-    }
-    if(clanFromDb.memberCount !== memberCount){
-        needsUpdate = true
-        clanFromDb.memberCount = memberCount
-    }
-    if(clanFromDb.realmId !== realmId){
-        needsUpdate = true
-        clanFromDb.realmId = realmId
-    }
-    if(clanFromDb.color !== color){
-        needsUpdate = true
-        clanFromDb.color = color
-    }
-
-    if(needsUpdate){
-        clanFromDb.save()
-    }
+        // create battle
+        let newBattle = await createBattle(battle)
+        resolve({
+            ...newBattle,
+            battleIncrement: 1
+        })
+    })
 }
