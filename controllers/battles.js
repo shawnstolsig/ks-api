@@ -51,7 +51,7 @@ const checkOrCreateBattle = (battle) => {
         const { Battle } = sequelize.models;
 
         // abort if battle already exists
-        const foundBattle = await Battle.findOne({ where: { id: battle.id }})
+        const foundBattle = await Battle.findOne({ where: { id: battle.id.toString() }})
         if(foundBattle) {
             resolve({
                 clanIncrement: 0,
@@ -59,7 +59,7 @@ const checkOrCreateBattle = (battle) => {
                 battleIncrement: 0
             })
             return;
-        };
+        }
 
         // create battle
         let newBattle = await createBattle(battle)
@@ -73,7 +73,7 @@ const checkOrCreateBattle = (battle) => {
 const createBattle = (b) => {
     return new Promise(async(resolve, reject) => {
         const { Battle, Clan, ClanResult, Map, Player, PlayerResult, Realm, Stage } = sequelize.models;
-        const battleId = b.id
+        const battleId = b.id.toString()
 
         let clanCounter = 0
         let playerCounter = 0
@@ -86,7 +86,7 @@ const createBattle = (b) => {
         const season = b.season_number
 
         // get map and realm: map_id and realm
-        const map = await Map.findByPk(b.map_id)
+        const map = await Map.findByPk(b.map_id.toString())
         const battleRealm = await Realm.findOne({ where: { wgRealm: b.realm }})
 
         // create the battle
@@ -110,7 +110,7 @@ const createBattle = (b) => {
             let clanRealm = await Realm.findOne({ where: { wgRealm: clanFromJson.claninfo.realm }})
             let [ clanFromDb, wasClanCreated ] = await Clan.findOrCreate({
                 where: {
-                    id: clanFromJson.clan_id
+                    id: clanFromJson.clan_id.toString()
                 },
                 defaults: {
                     name: clanFromJson.claninfo.name,
@@ -139,7 +139,7 @@ const createBattle = (b) => {
 
             // create the clanResult
             let clanResultInstance = {
-                id: clanFromJson.id,
+                id: clanFromJson.id.toString(),
                 division: clanFromJson.division,
                 divisionRating: clanFromJson.division_rating,
                 league: clanFromJson.league,
@@ -165,8 +165,8 @@ const createBattle = (b) => {
                     }
                 }
 
-                let createdStage = await Stage.create({
-                    id: clanFromJson.stage.id,
+                const stageToCreate = {
+                    id: clanFromJson.stage.id.toString(),
                     battles: clanFromJson.stage.battles,
                     lossCount,
                     target: clanFromJson.stage.target,
@@ -178,7 +178,11 @@ const createBattle = (b) => {
                     victoriesRequired: clanFromJson.stage.victories_required,
                     winCount,
                     clanResultId: createdClanResult.id
-                })
+                }
+
+                // for some reason, this is trying to get a ClanResultId col from the table
+                // adding returning:false prevents this
+                await Stage.create(stageToCreate, {returning: false})
             }
 
 
@@ -187,11 +191,11 @@ const createBattle = (b) => {
 
                 let [ playerFromDb, wasPlayerCreated ] = await Player.findOrCreate({
                     where: {
-                        id: playerFromJson.spa_id
+                        id: playerFromJson.spa_id.toString()
                     },
                     defaults: {
                         name: playerFromJson.name,
-                        clanId: clanFromDb.id,
+                        clanId: clanFromDb.id.toString(),
                         realmId: clanRealm.id
                     }
                 })
@@ -211,10 +215,10 @@ const createBattle = (b) => {
                     id: `B${battleId}P${playerFromDb.id}`,
                     survived: playerFromJson.survived,
                     battleId,
-                    clanId: clanFromDb.id,
-                    clanResultId: createdClanResult.id,
-                    playerId: playerFromDb.id,
-                    shipId: playerFromJson.vehicle_id
+                    clanId: clanFromDb.id.toString(),
+                    clanResultId: createdClanResult.id.toString(),
+                    playerId: playerFromDb.id.toString(),
+                    shipId: playerFromJson.vehicle_id.toString()
                 }
 
                 await PlayerResult.create(playerResultInstance)

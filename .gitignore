@@ -1,3 +1,5 @@
+.DS_Store
+
 # contains db login credentials
 config.json
 

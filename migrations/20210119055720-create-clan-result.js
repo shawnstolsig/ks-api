@@ -26,9 +26,6 @@ module.exports = {
       divisionRating: {
         type: Sequelize.INTEGER
       },
-      stageId: {
-        type: Sequelize.STRING
-      },
       clanId: {
         type: Sequelize.STRING
       },

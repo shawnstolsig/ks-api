@@ -1,192 +1,33 @@
 [
   {
     "map": {
-      "name": "Greece"
+      "name": "Warrior's Path"
     },
     "realm": "us",
-    "arena_id": 3661478402093373,
-    "finished_at": "2020-10-11T02:57:24+00:00",
+    "arena_id": 3450543967990974,
+    "finished_at": "2020-10-08T02:20:58+00:00",
     "teams": [
-      {
-        "division": 3,
-        "league": 2,
-        "claninfo": {
-          "tag": "KSD",
-          "realm": "us",
-          "name": "Kill Steal Denied",
-          "color": "#e3d6a0",
-          "members_count": 41,
-          "hex_color": "#e3d6a0",
-          "id": 7647259,
-          "disbanded": false
-        },
-        "team_number": 1,
-        "players": [
-          {
-            "vehicle_id": 3760142288,
-            "name": "kevin2804",
-            "nickname": "kevin2804",
-            "spa_id": 1000971134,
-            "clan_id": 1000044409,
-            "survived": true,
-            "ship": {
-              "level": 10,
-              "name": "Thunderer",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PBSB510_cb27ec458f68015555a2856b0b6c9e00160a06956d99d1a7b31c3a4491d66bdd.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PBSB510_9b652dafd4e2fbeeb2ad7d04f2cc672461a2df6b6e060ca7769d120aac5a07ba.png"
-              }
-            },
-            "result_id": 7647259
-          },
-          {
-            "vehicle_id": 3969824208,
-            "name": "Keggur",
-            "nickname": "Keggur",
-            "spa_id": 1020381117,
-            "clan_id": 1000044409,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Petropavlovsk",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC310_8953b5c5e24b10f314b645d14c50b67f444c6ba0fbe52f0803aed808197bca60.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC310_d3c3613d811ba7b7dc9b52dc69387d7d4d121e49700bb38297e6ab5f47a286f7.png"
-              }
-            },
-            "result_id": 7647259
-          },
-          {
-            "vehicle_id": 4179605200,
-            "name": "SunkCostSubmarine",
-            "nickname": "SunkCostSubmarine",
-            "spa_id": 1002208441,
-            "clan_id": 1000044409,
-            "survived": true,
-            "ship": {
-              "level": 10,
-              "name": "Hakuryū",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PJSA110_fdb0893cddc607ed40878e96abdd92ee34a3c2167f7111c63daa22c230a947eb.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PJSA110_ac0bfdd0d5c3b076ca5c541be57ab4d57ab45b754a09d1d906841291bc8273cf.png"
-              }
-            },
-            "result_id": 7647259
-          },
-          {
-            "vehicle_id": 4179506480,
-            "name": "Minish_Sage",
-            "nickname": "Minish_Sage",
-            "spa_id": 1016300216,
-            "clan_id": 1000044409,
-            "survived": true,
-            "ship": {
-              "level": 10,
-              "name": "Halland",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PWSD110_88949cd0601738e5c003da52c3b6fe85a37078723c15da3422d173e717f85c7d.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PWSD110_fb13534c0a2cea819b86d12a5da3cc6d955c115a177d0a28b640f653f9a4c3f7.png"
-              }
-            },
-            "result_id": 7647259
-          },
-          {
-            "vehicle_id": 3969824208,
-            "name": "Admiral_Calamari",
-            "nickname": "Admiral_Calamari",
-            "spa_id": 1028821104,
-            "clan_id": 1000044409,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Petropavlovsk",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC310_8953b5c5e24b10f314b645d14c50b67f444c6ba0fbe52f0803aed808197bca60.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC310_d3c3613d811ba7b7dc9b52dc69387d7d4d121e49700bb38297e6ab5f47a286f7.png"
-              }
-            },
-            "result_id": 7647259
-          },
-          {
-            "vehicle_id": 3760109008,
-            "name": "NonnaHobber",
-            "nickname": "NonnaHobber",
-            "spa_id": 1014763550,
-            "clan_id": 1000044409,
-            "survived": true,
-            "ship": {
-              "level": 10,
-              "name": "Stalingrad",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC510_6593631fc264acc093cfcc7dfecea27fdc2897ece6fdbfe8b21c697a354860e1.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC510_806b8ac30088238c7f252897900854a1add0077529d5fbf7818fb96868920cad.png"
-              }
-            },
-            "result_id": 7647259
-          },
-          {
-            "vehicle_id": 4074682320,
-            "name": "BlueGhostTX",
-            "nickname": "BlueGhostTX",
-            "spa_id": 1016101996,
-            "clan_id": 1000044409,
-            "survived": true,
-            "ship": {
-              "level": 10,
-              "name": "Goliath",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PBSC210_2a0dc76e214bdab416537bc05f2b6100992e067fffa0f7c8aa5c618402661c4d.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PBSC210_b6231d9cc6c27e2988c300e1ff42fab6828e732e73f3364880630206afe75549.png"
-              }
-            },
-            "result_id": 7647259
-          }
-        ],
-        "clan_id": 1000044409,
-        "rating_delta": 51,
-        "result": "victory",
-        "division_rating": 50,
-        "id": 7647259,
-        "stage": null
-      },
       {
         "division": 1,
         "league": 3,
         "claninfo": {
-          "tag": "CCTV2",
+          "tag": "KSD",
           "realm": "us",
-          "name": "CCTV2 Finance and Business Channel Rebirth",
+          "name": "Kill Steal Denied",
           "color": "#cce4e4",
-          "members_count": 31,
+          "members_count": 41,
           "hex_color": "#cce4e4",
-          "id": 7647260,
+          "id": 7584731,
           "disbanded": false
         },
         "team_number": 1,
         "players": [
           {
-            "vehicle_id": 3969824208,
-            "name": "YuukiAsuna930",
-            "nickname": "YuukiAsuna930",
-            "spa_id": 1037884087,
-            "clan_id": 1000080012,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Petropavlovsk",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC310_8953b5c5e24b10f314b645d14c50b67f444c6ba0fbe52f0803aed808197bca60.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC310_d3c3613d811ba7b7dc9b52dc69387d7d4d121e49700bb38297e6ab5f47a286f7.png"
-              }
-            },
-            "result_id": 7647260
-          },
-          {
             "vehicle_id": 4179572176,
-            "name": "NewGetterRobo",
-            "nickname": "NewGetterRobo",
-            "spa_id": 1026847669,
-            "clan_id": 1000080012,
+            "name": "kevin2804",
+            "nickname": "kevin2804",
+            "spa_id": 1000971134,
+            "clan_id": 1000044409,
             "survived": false,
             "ship": {
               "level": 10,
@@ -196,169 +37,13 @@
                 "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSB110_0e46b0f003b455be580c5d296c17fb04f2fc89ca3d01bf14ce9fc8c37f5330d0.png"
               }
             },
-            "result_id": 7647260
-          },
-          {
-            "vehicle_id": 3760109008,
-            "name": "__aVALOn__",
-            "nickname": "__aVALOn__",
-            "spa_id": 1013342865,
-            "clan_id": 1000080012,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Stalingrad",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC510_6593631fc264acc093cfcc7dfecea27fdc2897ece6fdbfe8b21c697a354860e1.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC510_806b8ac30088238c7f252897900854a1add0077529d5fbf7818fb96868920cad.png"
-              }
-            },
-            "result_id": 7647260
-          },
-          {
-            "vehicle_id": 3655251952,
-            "name": "sixinai",
-            "nickname": "sixinai",
-            "spa_id": 1012143180,
-            "clan_id": 1000080012,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Puerto Rico",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PASC610_9ee704f91a6d43f6480332960c14a7ff82b21027c2dcd20906928f53ebc3804c.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PASC610_ce20ff8da38d8bcc6d8150fe203e9018dd72c0ee8ac832dce52a464863c70e9d.png"
-              }
-            },
-            "result_id": 7647260
-          },
-          {
-            "vehicle_id": 3969824208,
-            "name": "topgeared",
-            "nickname": "topgeared",
-            "spa_id": 1033169675,
-            "clan_id": 1000080012,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Petropavlovsk",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC310_8953b5c5e24b10f314b645d14c50b67f444c6ba0fbe52f0803aed808197bca60.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC310_d3c3613d811ba7b7dc9b52dc69387d7d4d121e49700bb38297e6ab5f47a286f7.png"
-              }
-            },
-            "result_id": 7647260
-          },
-          {
-            "vehicle_id": 3760142320,
-            "name": "Hanawa_S",
-            "nickname": "Hanawa_S",
-            "spa_id": 1028639974,
-            "clan_id": 1000080012,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Ohio",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PASB510_6666881f8e3ad79c1ff9794fa506277dd44ee5381a0ead04391f3d29573f075f.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PASB510_6485422f4a6dd58842e13a58366f93f0ed8b4e4b53a610e7c605941911498604.png"
-              }
-            },
-            "result_id": 7647260
-          },
-          {
-            "vehicle_id": 3655251952,
-            "name": "fiship",
-            "nickname": "fiship",
-            "spa_id": 1018590688,
-            "clan_id": 1000080012,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Puerto Rico",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PASC610_9ee704f91a6d43f6480332960c14a7ff82b21027c2dcd20906928f53ebc3804c.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PASC610_ce20ff8da38d8bcc6d8150fe203e9018dd72c0ee8ac832dce52a464863c70e9d.png"
-              }
-            },
-            "result_id": 7647260
-          }
-        ],
-        "clan_id": 1000080012,
-        "rating_delta": -13,
-        "result": "defeat",
-        "division_rating": 30,
-        "id": 7647260,
-        "stage": null
-      }
-    ],
-    "cluster_id": 4304,
-    "map_id": 31,
-    "season_number": 11,
-    "id": 3858465
-  },
-  {
-    "map": {
-      "name": "Northern Waters"
-    },
-    "realm": "us",
-    "arena_id": 2939666198326689,
-    "finished_at": "2020-10-11T02:40:51+00:00",
-    "teams": [
-      {
-        "division": 1,
-        "league": 3,
-        "claninfo": {
-          "tag": "KSD",
-          "realm": "us",
-          "name": "Kill Steal Denied UPDATED",
-          "color": "#cce4e4",
-          "members_count": 41,
-          "hex_color": "#cce4e4",
-          "id": 7646729,
-          "disbanded": false
-        },
-        "team_number": 1,
-        "players": [
-          {
-            "vehicle_id": 3760142288,
-            "name": "kevin2804",
-            "nickname": "kevin2804",
-            "spa_id": 1000971134,
-            "clan_id": 1000044409,
-            "survived": true,
-            "ship": {
-              "level": 10,
-              "name": "Thunderer",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PBSB510_cb27ec458f68015555a2856b0b6c9e00160a06956d99d1a7b31c3a4491d66bdd.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PBSB510_9b652dafd4e2fbeeb2ad7d04f2cc672461a2df6b6e060ca7769d120aac5a07ba.png"
-              }
-            },
-            "result_id": 7646729
-          },
-          {
-            "vehicle_id": 3969824208,
-            "name": "Keggur",
-            "nickname": "Keggur",
-            "spa_id": 1020381117,
-            "clan_id": 1000044409,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Petropavlovsk",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC310_8953b5c5e24b10f314b645d14c50b67f444c6ba0fbe52f0803aed808197bca60.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC310_d3c3613d811ba7b7dc9b52dc69387d7d4d121e49700bb38297e6ab5f47a286f7.png"
-              }
-            },
-            "result_id": 7646729
+            "result_id": 7584731
           },
           {
             "vehicle_id": 4179605200,
-            "name": "SunkCostSubmarine",
-            "nickname": "SunkCostSubmarine",
-            "spa_id": 1002208441,
+            "name": "Heatsurge",
+            "nickname": "Heatsurge",
+            "spa_id": 1013913148,
             "clan_id": 1000044409,
             "survived": true,
             "ship": {
@@ -369,7 +54,7 @@
                 "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PJSA110_ac0bfdd0d5c3b076ca5c541be57ab4d57ab45b754a09d1d906841291bc8273cf.png"
               }
             },
-            "result_id": 7646729
+            "result_id": 7584731
           },
           {
             "vehicle_id": 4179506480,
@@ -386,30 +71,30 @@
                 "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PWSD110_fb13534c0a2cea819b86d12a5da3cc6d955c115a177d0a28b640f653f9a4c3f7.png"
               }
             },
-            "result_id": 7646729
+            "result_id": 7584731
           },
           {
-            "vehicle_id": 3760109008,
-            "name": "NonnaHobber",
-            "nickname": "NonnaHobber",
-            "spa_id": 1014763550,
+            "vehicle_id": 4074682320,
+            "name": "CPRVonLettowVorbeck",
+            "nickname": "CPRVonLettowVorbeck",
+            "spa_id": 1029317430,
             "clan_id": 1000044409,
             "survived": false,
             "ship": {
               "level": 10,
-              "name": "Stalingrad",
+              "name": "Goliath",
               "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC510_6593631fc264acc093cfcc7dfecea27fdc2897ece6fdbfe8b21c697a354860e1.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC510_806b8ac30088238c7f252897900854a1add0077529d5fbf7818fb96868920cad.png"
+                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PBSC210_2a0dc76e214bdab416537bc05f2b6100992e067fffa0f7c8aa5c618402661c4d.png",
+                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PBSC210_b6231d9cc6c27e2988c300e1ff42fab6828e732e73f3364880630206afe75549.png"
               }
             },
-            "result_id": 7646729
+            "result_id": 7584731
           },
           {
             "vehicle_id": 4074682320,
-            "name": "BlueGhostTX",
-            "nickname": "BlueGhostTX",
-            "spa_id": 1016101996,
+            "name": "Feuerja",
+            "nickname": "Feuerja",
+            "spa_id": 1025165459,
             "clan_id": 1000044409,
             "survived": true,
             "ship": {
@@ -420,122 +105,32 @@
                 "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PBSC210_b6231d9cc6c27e2988c300e1ff42fab6828e732e73f3364880630206afe75549.png"
               }
             },
-            "result_id": 7646729
+            "result_id": 7584731
           },
           {
-            "vehicle_id": 3969824208,
-            "name": "Admiral_Calamari",
-            "nickname": "Admiral_Calamari",
-            "spa_id": 1028821104,
+            "vehicle_id": 4281219056,
+            "name": "tehDugong",
+            "nickname": "tehDugong",
+            "spa_id": 1014842052,
             "clan_id": 1000044409,
-            "survived": false,
-            "ship": {
-              "level": 10,
-              "name": "Petropavlovsk",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC310_8953b5c5e24b10f314b645d14c50b67f444c6ba0fbe52f0803aed808197bca60.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC310_d3c3613d811ba7b7dc9b52dc69387d7d4d121e49700bb38297e6ab5f47a286f7.png"
-              }
-            },
-            "result_id": 7646729
-          }
-        ],
-        "clan_id": 1000044409,
-        "rating_delta": 0,
-        "result": "defeat",
-        "division_rating": 99,
-        "id": 7646729,
-        "stage": {
-          "battle_result_id": 7646729,
-          "target": "league",
-          "target_public_rating": 1615,
-          "victories_required": 3,
-          "target_league": 2,
-          "battles": 5,
-          "target_division": 3,
-          "progress": [
-            "victory",
-            "victory",
-            "defeat"
-          ],
-          "target_division_rating": 15,
-          "type": "promotion",
-          "id": 1658350
-        }
-      },
-      {
-        "division": 1,
-        "league": 3,
-        "claninfo": {
-          "tag": "QQ7",
-          "realm": "us",
-          "name": "High Caliber",
-          "color": "#cce4e4",
-          "members_count": 49,
-          "hex_color": "#cce4e4",
-          "id": 7646730,
-          "disbanded": false
-        },
-        "team_number": 2,
-        "players": [
-          {
-            "vehicle_id": 3969824208,
-            "name": "K_I_T_T_E_N_S",
-            "nickname": "K_I_T_T_E_N_S",
-            "spa_id": 1038441082,
-            "clan_id": 1000071346,
             "survived": true,
             "ship": {
               "level": 10,
-              "name": "Petropavlovsk",
+              "name": "Gearing",
               "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC310_8953b5c5e24b10f314b645d14c50b67f444c6ba0fbe52f0803aed808197bca60.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC310_d3c3613d811ba7b7dc9b52dc69387d7d4d121e49700bb38297e6ab5f47a286f7.png"
+                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PASD013_8157b2a95b36e003157bb884f9eb33bb3bae80b8f5e769cc37079f5279446de1.png",
+                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PASD013_0bc4a44113e228cbd933737573e98785df4fd466940858509a4581277b40c93b.png"
               }
             },
-            "result_id": 7646730
-          },
-          {
-            "vehicle_id": 3760142032,
-            "name": "TheMooseontheLoose",
-            "nickname": "TheMooseontheLoose",
-            "spa_id": 1015339415,
-            "clan_id": 1000071346,
-            "survived": true,
-            "ship": {
-              "level": 10,
-              "name": "Shikishima",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PJSB510_5dcbf3083d5dc59ca298f6491a2aeaa0d75c2a3f203bea90e1ed807a556ac5ba.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PJSB510_1bb76b5a9876e86437f6fe6c6eca6cefcdcf00bf3740fe7119ec8280155a262c.png"
-              }
-            },
-            "result_id": 7646730
-          },
-          {
-            "vehicle_id": 4179506480,
-            "name": "Sky_Law",
-            "nickname": "Sky_Law",
-            "spa_id": 1020951632,
-            "clan_id": 1000071346,
-            "survived": true,
-            "ship": {
-              "level": 10,
-              "name": "Halland",
-              "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PWSD110_88949cd0601738e5c003da52c3b6fe85a37078723c15da3422d173e717f85c7d.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PWSD110_fb13534c0a2cea819b86d12a5da3cc6d955c115a177d0a28b640f653f9a4c3f7.png"
-              }
-            },
-            "result_id": 7646730
+            "result_id": 7584731
           },
           {
             "vehicle_id": 3760109008,
-            "name": "SomaliasBest",
-            "nickname": "SomaliasBest",
-            "spa_id": 1029463202,
-            "clan_id": 1000071346,
-            "survived": false,
+            "name": "Drewby611",
+            "nickname": "Drewby611",
+            "spa_id": 1018314499,
+            "clan_id": 1000044409,
+            "survived": true,
             "ship": {
               "level": 10,
               "name": "Stalingrad",
@@ -544,48 +139,105 @@
                 "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC510_806b8ac30088238c7f252897900854a1add0077529d5fbf7818fb96868920cad.png"
               }
             },
-            "result_id": 7646730
-          },
+            "result_id": 7584731
+          }
+        ],
+        "clan_id": 1000044409,
+        "rating_delta": -16,
+        "result": "defeat",
+        "division_rating": 25,
+        "id": 7584731,
+        "stage": null
+      },
+      {
+        "division": 1,
+        "league": 3,
+        "claninfo": {
+          "tag": "OO7",
+          "realm": "us",
+          "name": "Double Strike",
+          "color": "#cce4e4",
+          "members_count": 45,
+          "hex_color": "#cce4e4",
+          "id": 7584732,
+          "disbanded": false
+        },
+        "team_number": 2,
+        "players": [
           {
-            "vehicle_id": 3760175088,
-            "name": "The_Illusive_Payfast",
-            "nickname": "The_Illusive_Payfast",
-            "spa_id": 1014036388,
-            "clan_id": 1000071346,
+            "vehicle_id": 3760109008,
+            "name": "GetRekt_X9",
+            "nickname": "GetRekt_X9",
+            "spa_id": 1018031849,
+            "clan_id": 1000048416,
             "survived": true,
             "ship": {
               "level": 10,
-              "name": "Franklin D. Roosevelt",
+              "name": "Stalingrad",
               "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PASA510_7d382dfd0403c3aa12245fb54adbff960f4b870770a1c50b1da0f45090bf5ac4.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PASA510_4e12d73f6d12147f08075766e6aaa9ff50cbacf28ebdb29d4847de60d8eb0bdc.png"
+                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC510_6593631fc264acc093cfcc7dfecea27fdc2897ece6fdbfe8b21c697a354860e1.png",
+                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC510_806b8ac30088238c7f252897900854a1add0077529d5fbf7818fb96868920cad.png"
               }
             },
-            "result_id": 7646730
+            "result_id": 7584732
           },
           {
-            "vehicle_id": 3655251952,
-            "name": "PunisherONE",
-            "nickname": "PunisherONE",
-            "spa_id": 1002577730,
-            "clan_id": 1000071346,
+            "vehicle_id": 3760109008,
+            "name": "TheMoistner",
+            "nickname": "TheMoistner",
+            "spa_id": 1008008337,
+            "clan_id": 1000048416,
             "survived": true,
             "ship": {
               "level": 10,
-              "name": "Puerto Rico",
+              "name": "Stalingrad",
               "icons": {
-                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PASC610_9ee704f91a6d43f6480332960c14a7ff82b21027c2dcd20906928f53ebc3804c.png",
-                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PASC610_ce20ff8da38d8bcc6d8150fe203e9018dd72c0ee8ac832dce52a464863c70e9d.png"
+                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC510_6593631fc264acc093cfcc7dfecea27fdc2897ece6fdbfe8b21c697a354860e1.png",
+                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC510_806b8ac30088238c7f252897900854a1add0077529d5fbf7818fb96868920cad.png"
               }
             },
-            "result_id": 7646730
+            "result_id": 7584732
+          },
+          {
+            "vehicle_id": 3760142320,
+            "name": "Itinerant_Battleship",
+            "nickname": "Itinerant_Battleship",
+            "spa_id": 1023799088,
+            "clan_id": 1000048416,
+            "survived": true,
+            "ship": {
+              "level": 10,
+              "name": "Ohio",
+              "icons": {
+                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PASB510_6666881f8e3ad79c1ff9794fa506277dd44ee5381a0ead04391f3d29573f075f.png",
+                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PASB510_6485422f4a6dd58842e13a58366f93f0ed8b4e4b53a610e7c605941911498604.png"
+              }
+            },
+            "result_id": 7584732
+          },
+          {
+            "vehicle_id": 3760109008,
+            "name": "GERMAN_WAW",
+            "nickname": "GERMAN_WAW",
+            "spa_id": 1000031246,
+            "clan_id": 1000048416,
+            "survived": true,
+            "ship": {
+              "level": 10,
+              "name": "Stalingrad",
+              "icons": {
+                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC510_6593631fc264acc093cfcc7dfecea27fdc2897ece6fdbfe8b21c697a354860e1.png",
+                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC510_806b8ac30088238c7f252897900854a1add0077529d5fbf7818fb96868920cad.png"
+              }
+            },
+            "result_id": 7584732
           },
           {
             "vehicle_id": 3969824208,
-            "name": "Wonder_Cube",
-            "nickname": "Wonder_Cube",
-            "spa_id": 1013427041,
-            "clan_id": 1000071346,
+            "name": "eagle_lance",
+            "nickname": "eagle_lance",
+            "spa_id": 1017052077,
+            "clan_id": 1000048416,
             "survived": true,
             "ship": {
               "level": 10,
@@ -595,36 +247,68 @@
                 "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC310_d3c3613d811ba7b7dc9b52dc69387d7d4d121e49700bb38297e6ab5f47a286f7.png"
               }
             },
-            "result_id": 7646730
+            "result_id": 7584732
+          },
+          {
+            "vehicle_id": 4179572176,
+            "name": "smileatthefaceofdeath",
+            "nickname": "smileatthefaceofdeath",
+            "spa_id": 1003314569,
+            "clan_id": 1000048416,
+            "survived": true,
+            "ship": {
+              "level": 10,
+              "name": "Kremlin",
+              "icons": {
+                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSB110_5cbf48674ac63b2bb8d94cd779e1956ad9f7f584af8c775cbe3660772b402bed.png",
+                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSB110_0e46b0f003b455be580c5d296c17fb04f2fc89ca3d01bf14ce9fc8c37f5330d0.png"
+              }
+            },
+            "result_id": 7584732
+          },
+          {
+            "vehicle_id": 3969824208,
+            "name": "G36Critical",
+            "nickname": "G36Critical",
+            "spa_id": 1024343813,
+            "clan_id": 1000048416,
+            "survived": true,
+            "ship": {
+              "level": 10,
+              "name": "Petropavlovsk",
+              "icons": {
+                "dead": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_dead/PRSC310_8953b5c5e24b10f314b645d14c50b67f444c6ba0fbe52f0803aed808197bca60.png",
+                "alive": "//glossary-wows-global.gcdn.co/icons/vehicle/contour_alive/PRSC310_d3c3613d811ba7b7dc9b52dc69387d7d4d121e49700bb38297e6ab5f47a286f7.png"
+              }
+            },
+            "result_id": 7584732
           }
         ],
-        "clan_id": 1000071346,
+        "clan_id": 1000048416,
         "rating_delta": 0,
         "result": "victory",
         "division_rating": 99,
-        "id": 7646730,
+        "id": 7584732,
         "stage": {
-          "battle_result_id": 7646730,
+          "battle_result_id": 7584732,
           "target": "league",
-          "target_public_rating": 1622,
+          "target_public_rating": 1626,
           "victories_required": 3,
           "target_league": 2,
           "battles": 5,
           "target_division": 3,
           "progress": [
-            "defeat",
-            "defeat",
             "victory"
           ],
-          "target_division_rating": 22,
+          "target_division_rating": 26,
           "type": "promotion",
-          "id": 1658351
+          "id": 1649685
         }
       }
     ],
-    "cluster_id": 4307,
-    "map_id": 33,
+    "cluster_id": 4304,
+    "map_id": 26,
     "season_number": 11,
-    "id": 3858200
+    "id": 3827201
   }
 ]

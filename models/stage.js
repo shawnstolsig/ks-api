@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
   class Stage extends Model {
     static associate({ ClanResult }) {
       Stage.belongsTo(ClanResult, {
-        as: 'stage',
         foreignKey: 'clanResultId',
+        as: 'stage'
       });
     }
   };

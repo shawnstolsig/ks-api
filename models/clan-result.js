@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     // foreign keys
     battleId: DataTypes.STRING,
     clanId: DataTypes.STRING,
-    stageId: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'ClanResult',
