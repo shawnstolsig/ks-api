@@ -10,8 +10,8 @@ const apiHostName = 'http://localhost:3000'
 const seedBattles = () => {
 
     // let jsonDir = __dirname + '/data/medium/'
-    let jsonDir = __dirname + '/data/json/'
-    // let jsonDir = __dirname + '/data/season/'
+    // let jsonDir = __dirname + '/data/json/'
+    let jsonDir = __dirname + '/data/season/'
 
     // iterate through each file in /data/json directory
     fs
