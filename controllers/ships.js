@@ -1,5 +1,9 @@
 const { sequelize } = require('../models/index')
-const { shipsAbbr, shipClasses, nations } = require('../data/ships')
+const {
+    SHIP_CLASSES,
+    SHIPS_ABBREVIATIONS,
+    NATIONS
+} = require('../constants')
 
 const getShips = async (req, res, next) => {
     const { Ship } = sequelize.models
@@ -39,9 +43,9 @@ const createShips = (req, res, next) => {
             id: ship,
             name: ships[ship].name,
             tier: ships[ship].tier,
-            nationId: nations[ships[ship].nation],
-            shipClassId:shipClasses[ships[ship].type],
-            abbreviation: shipsAbbr[ship],
+            nationId: NATIONS[ships[ship].nation],
+            shipClassId: SHIP_CLASSES[ships[ship].type].id,
+            abbreviation: SHIPS_ABBREVIATIONS[ship],
         })
     })
     console.log(`Successfully posted ${counter} ships to the database.`)

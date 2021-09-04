@@ -1,4 +1,31 @@
-const shipsAbbr = {
+const REALMS = {
+    "asia": {
+        name: "Asia",
+        abbreviation: "ASIA",
+        domain: "asia",
+        id: 1
+    },
+    "eu": {
+        name: "Europe",
+        abbreviation: "EU",
+        domain: "eu",
+        id: 2
+    },
+    "us": {
+        name: "North America",
+        abbreviation: "NA",
+        domain: "com",
+        id: 3
+    },
+    "ru": {
+        name: "Russia",
+        abbreviation: "RU",
+        domain: "ru",
+        id: 4
+    },
+}
+
+const SHIPS_ABBREVIATIONS = {
     '4276041424'	:	'Yam'	,
     '3760142032'	:	'Shk'	,
     '4277090288'	:	'MT'	,
@@ -149,8 +176,7 @@ const shipsAbbr = {
     '4180554960'	:	'ChM'
 }
 
-
-const nations = {
+const NATIONS = {
     japan: 1,
     usa: 2,
     germany: 3,
@@ -162,16 +188,40 @@ const nations = {
     commonwealth: 9,
     pan_asia: 10,
     pan_america: 11,
+    netherlands: 12
 }
 
-const shipClasses =  {
-    Destroyer: 1,
-    Cruiser: 2,
-    Battleship: 3,
-    AirCarrier: 4
+const SHIP_CLASSES =  {
+    Destroyer: {
+        id: 1,
+        abbreviation: "DD",
+        name: "Destroyer",
+    },
+    Cruiser: {
+        id: 2,
+        abbreviation: "CA",
+        name: "Cruiser",
+    },
+    Battleship: {
+        id: 3,
+        abbreviation: "BB",
+        name: "Battleship",
+    },
+    AirCarrier: {
+        id: 4,
+        abbreviation: "CV",
+        name: "Aircraft Carrier",
+    },
+    Submarine: {
+        id: 5,
+        abbreviation: "SS",
+        name: "Submarine",
+    },
 }
+
 module.exports = {
-    shipsAbbr,
-    nations,
-    shipClasses
+    SHIP_CLASSES,
+    SHIPS_ABBREVIATIONS,
+    REALMS,
+    NATIONS
 }

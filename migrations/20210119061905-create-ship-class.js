@@ -11,6 +11,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      wgName: {
+        type: Sequelize.STRING
+      },
       abbreviation: {
         type: Sequelize.STRING
       },

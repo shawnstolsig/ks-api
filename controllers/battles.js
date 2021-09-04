@@ -1,4 +1,5 @@
-const { sequelize } = require('../models/index');
+const { sequelize } = require('../models/index')
+const { REALMS } = require('../constants')
 
 const createBattles = async (req, res, next) => {
     const battles = req.body;
@@ -6,7 +7,9 @@ const createBattles = async (req, res, next) => {
     let clanCounter = 0
     let playerCounter = 0
 
-    let battlePromises = Object.values(battles).map(checkOrCreateBattle)
+    const allMaps = await sequelize.models.Map.findAll()
+
+    let battlePromises = Object.values(battles).map(battle => processBattle(battle,allMaps))
     let responses = await Promise.all(battlePromises)
 
     responses.forEach(({ battleIncrement, clanIncrement, playerIncrement }) => {
@@ -46,203 +49,197 @@ const getBattles = async (req, res, next) => {
     }
 }
 
-const checkOrCreateBattle = (battle) => {
-    return new Promise(async (resolve, reject) => {
-        const { Battle } = sequelize.models;
-
-        // abort if battle already exists
-        const foundBattle = await Battle.findOne({ where: { id: battle.id.toString() }})
-        if(foundBattle) {
-            resolve({
-                clanIncrement: 0,
-                playerIncrement: 0,
-                battleIncrement: 0
-            })
-            return;
-        }
-
-        // create battle
-        let newBattle = await createBattle(battle)
-        resolve({
-            ...newBattle,
-            battleIncrement: 1
-        })
-    })
-}
-
-const createBattle = (b) => {
+const processBattle = (b,allMaps) => {
     return new Promise(async(resolve, reject) => {
-        const { Battle, Clan, ClanResult, Map, Player, PlayerResult, Realm, Stage } = sequelize.models;
-        const battleId = b.id.toString()
+        const { Battle, Clan, ClanResult, Player, PlayerResult, Stage } = sequelize.models;
 
         let clanCounter = 0
         let playerCounter = 0
 
         // BUILD NEW BATTLE:
         // root level attributes: arena_id, finished_at, cluster_id, season_number
+        const {
+            arena_id: arenaId,
+            cluster_id: clusterId,
+            season_number: season
+        } = b
+        const battleId = b.id.toString()
         const finishedAt =  new Date(b.finished_at)
-        const arenaId = b.arena_id
-        const clusterId = b.cluster_id
-        const season = b.season_number
 
         // get map and realm: map_id and realm
-        const map = await Map.findByPk(b.map_id.toString())
-        const battleRealm = await Realm.findOne({ where: { wgRealm: b.realm }})
+        const map = allMaps.find(map => map.id === b.map_id.toString())
+        const battleRealm = REALMS[b.realm]
 
-        // create the battle
-        let createdBattle = await Battle.create({
-            id: battleId,
-            finishedAt,
-            arenaId,
-            clusterId,
-            season,
-            mapId: map.id,
-            realmId: battleRealm.id
-        })
-
-        // for determining winMethod
-        let losersDied = true
-
-        // create the associated ClanResults
-        for(const clanFromJson of b.teams){
-
-            // find or create the clan
-            let clanRealm = await Realm.findOne({ where: { wgRealm: clanFromJson.claninfo.realm }})
-            let [ clanFromDb, wasClanCreated ] = await Clan.findOrCreate({
+        try {
+            const [ battle, wasBattleCreated] = await Battle.findOrBuild({
                 where: {
-                    id: clanFromJson.clan_id.toString()
+                    id: battleId
                 },
                 defaults: {
-                    name: clanFromJson.claninfo.name,
-                    color: clanFromJson.claninfo.color,
-                    isDisbanded: clanFromJson.claninfo.disbanded,
-                    memberCount: clanFromJson.claninfo.members_count,
-                    tag: clanFromJson.claninfo.tag,
-                    realmId: clanRealm.id
+                    finishedAt,
+                    arenaId,
+                    clusterId,
+                    season,
+                    mapId: map.id,
+                    realmId: battleRealm.id
                 }
             })
 
-            // update counter for status message
-            if(wasClanCreated) {
-                clanCounter++;
-            }
-            else {
-                updateClan(clanFromDb, {
-                    name: clanFromJson.claninfo.name,
-                    isDisbanded: clanFromJson.claninfo.disbanded,
-                    tag: clanFromJson.claninfo.tag,
-                    memberCount: clanFromJson.claninfo.members_count,
-                    realmId: clanRealm.id,
-                    color: clanFromJson.claninfo.color,
-                })
-            }
+            if(wasBattleCreated){
 
-            // create the clanResult
-            let clanResultInstance = {
-                id: clanFromJson.id.toString(),
-                division: clanFromJson.division,
-                divisionRating: clanFromJson.division_rating,
-                league: clanFromJson.league,
-                ratingDelta: clanFromJson.rating_delta,
-                result: clanFromJson.result,
-                teamRating: clanFromJson.team_number === 1 ? 'alpha' : 'bravo',
-                battleId,
-                clanId: clanFromDb.id,
-            }
-            let createdClanResult = await ClanResult.create(clanResultInstance)
+                // for determining winMethod
+                let losersDied = true
 
-            // if there is a stage, create it
-            if(clanFromJson.stage){
+                // create the associated ClanResults
+                for(const clanFromJson of b.teams){
 
-                // determine winCount and lossCount
-                let winCount = 0
-                let lossCount = 0
-                for(let progressBattle of clanFromJson.stage.progress){
-                    if(progressBattle === 'victory'){
-                        winCount++
-                    } else {
-                        lossCount++
-                    }
-                }
-
-                const stageToCreate = {
-                    id: clanFromJson.stage.id.toString(),
-                    battles: clanFromJson.stage.battles,
-                    lossCount,
-                    target: clanFromJson.stage.target,
-                    targetDivision: clanFromJson.stage.target_division,
-                    targetDivisionRating: clanFromJson.stage.target_division_rating,
-                    targetLeague: clanFromJson.stage.target_league,
-                    targetPublicRating: clanFromJson.stage.target_public_rating,
-                    type: clanFromJson.stage.type,
-                    victoriesRequired: clanFromJson.stage.victories_required,
-                    winCount,
-                    clanResultId: createdClanResult.id
-                }
-
-                // for some reason, this is trying to get a ClanResultId col from the table
-                // adding returning:false prevents this
-                await Stage.create(stageToCreate, {returning: false})
-            }
-
-
-            // create associated PlayerResults
-            for(const playerFromJson of clanFromJson.players){
-
-                let [ playerFromDb, wasPlayerCreated ] = await Player.findOrCreate({
-                    where: {
-                        id: playerFromJson.spa_id.toString()
-                    },
-                    defaults: {
-                        name: playerFromJson.name,
-                        clanId: clanFromDb.id.toString(),
-                        realmId: clanRealm.id
-                    }
-                })
-
-                // update counter for status message
-                if(wasPlayerCreated) {
-                    playerCounter++;
-                }
-                else {
-                    updatePlayer(playerFromDb, {
-                        name: playerFromJson.name,
-                        clanId: clanFromDb.id.toString()
+                    // find or create the clan
+                    const clanRealm = REALMS[clanFromJson.claninfo.realm]
+                    let [ clanFromDb, wasClanCreated ] = await Clan.findOrCreate({
+                        where: {
+                            id: clanFromJson.clan_id.toString()
+                        },
+                        defaults: {
+                            name: clanFromJson.claninfo.name,
+                            color: clanFromJson.claninfo.color,
+                            isDisbanded: clanFromJson.claninfo.disbanded,
+                            memberCount: clanFromJson.claninfo.members_count,
+                            tag: clanFromJson.claninfo.tag,
+                            realmId: clanRealm.id
+                        }
                     })
+
+                    // update counter for status message
+                    if(wasClanCreated) {
+                        clanCounter++;
+                    }
+                    else {
+                        updateClan(clanFromDb, {
+                            name: clanFromJson.claninfo.name,
+                            isDisbanded: clanFromJson.claninfo.disbanded,
+                            tag: clanFromJson.claninfo.tag,
+                            memberCount: clanFromJson.claninfo.members_count,
+                            realmId: clanRealm.id,
+                            color: clanFromJson.claninfo.color,
+                        })
+                    }
+
+                    // create the clanResult
+                    let clanResultInstance = {
+                        id: clanFromJson.id.toString(),
+                        division: clanFromJson.division,
+                        divisionRating: clanFromJson.division_rating,
+                        league: clanFromJson.league,
+                        ratingDelta: clanFromJson.rating_delta,
+                        result: clanFromJson.result,
+                        teamRating: clanFromJson.team_number === 1 ? 'alpha' : 'bravo',
+                        battleId,
+                        clanId: clanFromDb.id,
+                    }
+                    let createdClanResult = await ClanResult.create(clanResultInstance)
+
+                    // if there is a stage, create it
+                    if(clanFromJson.stage){
+
+                        // determine winCount and lossCount
+                        let winCount = 0
+                        let lossCount = 0
+                        for(let progressBattle of clanFromJson.stage.progress){
+                            if(progressBattle === 'victory'){
+                                winCount++
+                            } else {
+                                lossCount++
+                            }
+                        }
+
+                        const stageToCreate = {
+                            id: clanFromJson.stage.id.toString(),
+                            battles: clanFromJson.stage.battles,
+                            lossCount,
+                            target: clanFromJson.stage.target,
+                            targetDivision: clanFromJson.stage.target_division,
+                            targetDivisionRating: clanFromJson.stage.target_division_rating,
+                            targetLeague: clanFromJson.stage.target_league,
+                            targetPublicRating: clanFromJson.stage.target_public_rating,
+                            type: clanFromJson.stage.type,
+                            victoriesRequired: clanFromJson.stage.victories_required,
+                            winCount,
+                            clanResultId: createdClanResult.id
+                        }
+
+                        // for some reason, this is trying to get a ClanResultId col from the table
+                        // adding returning:false prevents this
+                        await Stage.create(stageToCreate, {returning: false})
+                    }
+
+                    // create associated PlayerResults
+                    for(const playerFromJson of clanFromJson.players){
+
+                        let [ playerFromDb, wasPlayerCreated ] = await Player.findOrCreate({
+                            where: {
+                                id: playerFromJson.spa_id.toString()
+                            },
+                            defaults: {
+                                name: playerFromJson.name,
+                                clanId: clanFromDb.id.toString(),
+                                realmId: clanRealm.id
+                            }
+                        })
+
+                        // update counter for status message
+                        if(wasPlayerCreated) {
+                            playerCounter++;
+                        }
+                        else {
+                            updatePlayer(playerFromDb, {
+                                name: playerFromJson.name,
+                                clanId: clanFromDb.id.toString()
+                            })
+                        }
+
+                        let playerResultInstance = {
+                            id: `B${battleId}P${playerFromDb.id}`,
+                            survived: playerFromJson.survived,
+                            battleId,
+                            clanId: clanFromDb.id.toString(),
+                            clanResultId: createdClanResult.id.toString(),
+                            playerId: playerFromDb.id.toString(),
+                            shipId: playerFromJson.vehicle_id.toString()
+                        }
+
+                        await PlayerResult.create(playerResultInstance)
+
+                        if(createdClanResult.result === 'defeat' && playerFromJson.survived){
+                            losersDied = false
+                        }
+                    }
                 }
 
-                let playerResultInstance = {
-                    id: `B${battleId}P${playerFromDb.id}`,
-                    survived: playerFromJson.survived,
-                    battleId,
-                    clanId: clanFromDb.id.toString(),
-                    clanResultId: createdClanResult.id.toString(),
-                    playerId: playerFromDb.id.toString(),
-                    shipId: playerFromJson.vehicle_id.toString()
+                // update the battle's winMethod field after iterating through all teams/players
+                if(losersDied){
+                    battle.winMethod = 'Kills'
+                } else {
+                    battle.winMethod = 'Points'
                 }
-
-                await PlayerResult.create(playerResultInstance)
-
-                if(createdClanResult.result === 'defeat' && playerFromJson.survived){
-                    losersDied = false
-                }
+                await battle.save()
             }
+
+            resolve({
+                clanIncrement: clanCounter,
+                playerIncrement: playerCounter,
+                battleIncrement: wasBattleCreated ? 1 : 0
+            })
+
+        }  // end try block
+
+        catch (error) {
+            console.log(`Failed to process battle ${battleId}:`, error)
+            reject(error)
         }
 
-        // update the battle's winMethod field after iterating through all teams/players
-        if(losersDied){
-            createdBattle.winMethod = 'Kills'
-        } else {
-            createdBattle.winMethod = 'Points'
-        }
-        createdBattle.save()
-
-        resolve({
-            clanIncrement: clanCounter,
-            playerIncrement: playerCounter
-        })
     })
 }
+
 // utility functions
 // TODO: clean up these functions, use a loop instead
 const updatePlayer = (playerFromDb, { name, clanId }) => {

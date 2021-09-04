@@ -9,11 +9,12 @@ module.exports = (sequelize, DataTypes) => {
       ShipClass.hasMany(Ship, { foreignKey: 'shipClassId' })
 
     }
-  };
+  }
   ShipClass.init({
     // attributes
     abbreviation: DataTypes.STRING,
     name: DataTypes.STRING,
+    wgName: DataTypes.STRING,
 
   }, {
     sequelize,
