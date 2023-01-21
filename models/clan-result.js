@@ -29,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     ratingDelta: DataTypes.INTEGER,
     result: DataTypes.STRING,
     teamRating: DataTypes.STRING,
+    isPrivate: DataTypes.BOOLEAN,
 
     // foreign keys
     battleId: DataTypes.STRING,

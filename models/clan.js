@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     isDisbanded: DataTypes.BOOLEAN,
     memberCount: DataTypes.INTEGER,
     tag: DataTypes.STRING,
+    asOf: DataTypes.DATE,
 
     // foreign keys
     realmId: DataTypes.STRING,

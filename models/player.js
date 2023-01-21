@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
   Player.init({
     // attributes
     name: DataTypes.STRING,
+    asOf: DataTypes.DATE,
 
     // foreign keys
     clanId: DataTypes.INTEGER,

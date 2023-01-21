@@ -17,7 +17,7 @@ module.exports = {
       { id: '12', name: 'Netherlands', abbreviation: 'HNLMS' },
     ]);
     await queryInterface.bulkInsert('realms', [
-      { id: '1', name: 'Asia', abbreviation: 'ASIA', domain: 'asia', wgRealm: 'asia' },
+      { id: '1', name: 'Asia', abbreviation: 'ASIA', domain: 'asia', wgRealm: 'sg' },
       { id: '2', name: 'Europe', abbreviation: 'EU', domain: 'eu', wgRealm: 'eu' },
       { id: '3', name: 'North America', abbreviation: 'NA', domain: 'com', wgRealm: 'us' },
       { id: '4', name: 'Russia', abbreviation: 'RU', domain: 'ru', wgRealm: 'ru' },

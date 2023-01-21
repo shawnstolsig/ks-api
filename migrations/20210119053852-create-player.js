@@ -17,7 +17,9 @@ module.exports = {
       realmId: {
         type: Sequelize.STRING
       },
-
+      asOf: {
+        type: Sequelize.DATE
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {

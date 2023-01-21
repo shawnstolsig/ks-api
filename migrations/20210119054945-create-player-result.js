@@ -26,6 +26,9 @@ module.exports = {
       survived: {
         type: Sequelize.BOOLEAN
       },
+      isPrivate: {
+        type: Sequelize.BOOLEAN
+      },
 
     });
   },

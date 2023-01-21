@@ -1,5 +1,5 @@
 const REALMS = {
-    "asia": {
+    "sg": {
         name: "Asia",
         abbreviation: "ASIA",
         domain: "asia",

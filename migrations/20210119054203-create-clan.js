@@ -26,6 +26,9 @@ module.exports = {
       color: {
         type: Sequelize.STRING
       },
+      asOf: {
+        type: Sequelize.DATE
+      }
 
     });
   },

@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   PlayerResult.init({
     // attributes
     survived: DataTypes.BOOLEAN,
+    isPrivate: DataTypes.BOOLEAN,
 
     // foreign keys
     battleId: DataTypes.STRING,

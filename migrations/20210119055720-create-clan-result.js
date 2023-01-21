@@ -32,6 +32,9 @@ module.exports = {
       battleId: {
         type: Sequelize.STRING
       },
+      isPrivate: {
+        type: Sequelize.BOOLEAN
+      },
 
     });
   },
