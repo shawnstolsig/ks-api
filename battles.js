@@ -5,7 +5,7 @@ const fs = require('fs')
 const path = require('path');
 const basename = path.basename(__filename);
 
-const apiHostName = 'http://localhost:3000'
+const apiHostName = 'http://localhost:3001'
 
 const seedBattles = async () => {
 
@@ -13,8 +13,8 @@ const seedBattles = async () => {
     await axios.get(`${apiHostName}/resetBattles/`)
 
     // let jsonDir = __dirname + '/data/medium/'
-    let jsonDir = __dirname + '/data/json/'
-    // let jsonDir = __dirname + '/data/season/'
+    // let jsonDir = __dirname + '/data/json/'
+    let jsonDir = __dirname + '/data/season/'
 
     //---------------------- this version will only process one file at a time
     // iterate through each file directory

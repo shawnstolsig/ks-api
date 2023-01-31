@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       target: {
         type: Sequelize.STRING
@@ -39,7 +39,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       clanResultId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
     });
   },

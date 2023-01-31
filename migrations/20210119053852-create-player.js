@@ -6,16 +6,16 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       name: {
         type: Sequelize.STRING
       },
       clanId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       realmId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       asOf: {
         type: Sequelize.DATE

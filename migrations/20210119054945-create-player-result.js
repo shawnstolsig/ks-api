@@ -4,24 +4,24 @@ module.exports = {
     await queryInterface.createTable('playerResults', {
       id: {
         allowNull: false,
-        autoIncrement: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       shipId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       clanId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       playerId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       clanResultId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       battleId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       survived: {
         type: Sequelize.BOOLEAN

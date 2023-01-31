@@ -36,7 +36,6 @@ router.get('/resetAll', async (req, res, next) => {
 
   res.json( { message: 'all reset success' });
 });
-
 router.get('/resetBattles', async (req, res, next) => {
   const { Battle, ClanResult, Clan, PlayerResult, Player, Stage } = sequelize.models
   await Battle.destroy({
@@ -61,5 +60,16 @@ router.get('/resetBattles', async (req, res, next) => {
 
   res.json( { message: 'battles reset success' });
 });
+
+// router.get('/sync',  async (req, res) => {
+//   try {
+//     await sequelize.sync({force: true})
+//     console.log('sync done');
+//     res.status(200).send( 'sync done');
+//   } catch (e) {
+//     console.log(`error with sync: ${e}`)
+//     res.status(500).send( `error with sync: ${e}`);
+//   }
+// });
 
 module.exports = router;

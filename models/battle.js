@@ -23,15 +23,15 @@ module.exports = (sequelize, DataTypes) => {
   };
   Battle.init({
     // attributes
-    arenaId: DataTypes.INTEGER,
-    clusterId: DataTypes.INTEGER,
+    arenaId: DataTypes.BIGINT,
+    clusterId: DataTypes.BIGINT,
     season: DataTypes.INTEGER,
     finishedAt: DataTypes.DATE,
     winMethod: DataTypes.STRING,
 
     // foreign keys
-    mapId: DataTypes.STRING,
-    realmId: DataTypes.STRING,
+    mapId: DataTypes.BIGINT,
+    realmId: DataTypes.BIGINT,
   }, {
     sequelize,
     modelName: 'Battle',

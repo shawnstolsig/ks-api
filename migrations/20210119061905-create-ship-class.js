@@ -4,9 +4,9 @@ module.exports = {
     await queryInterface.createTable('shipClasses', {
       id: {
         allowNull: false,
-        autoIncrement: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       name: {
         type: Sequelize.STRING

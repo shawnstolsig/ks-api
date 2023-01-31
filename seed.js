@@ -6,7 +6,7 @@ const fs = require('fs')
 const path = require('path');
 const basename = path.basename(__filename);
 
-const apiHostName = 'http://localhost:3000'
+const apiHostName = 'http://localhost:3001'
 const mapUrl = `https://api.worldofwarships.com/wows/encyclopedia/battlearenas/?application_id=${appId}`
 const shipUrl = (page) => `https://api.worldofwarships.com/wows/encyclopedia/ships/?application_id=${appId}&page_no=${page}&fields=name%2Ctier%2Ctype%2Cnation`
 

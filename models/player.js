@@ -27,8 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     asOf: DataTypes.DATE,
 
     // foreign keys
-    clanId: DataTypes.INTEGER,
-    realmId: DataTypes.INTEGER,
+    clanId: DataTypes.BIGINT,
+    realmId: DataTypes.BIGINT,
   }, {
     sequelize,
     modelName: 'Player',

@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       name: {
         type: Sequelize.STRING
@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       realmId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       color: {
         type: Sequelize.STRING

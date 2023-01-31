@@ -91,11 +91,11 @@ const processBattle = (b,allMaps) => {
             cluster_id: clusterId,
             season_number: season
         } = b
-        const battleId = b.id.toString()
+        const battleId = b.id
         const finishedAt = new Date(b.finished_at)
 
         // get map and realm: map_id and realm
-        const map = allMaps.find(map => map.id === b.map_id.toString())
+        const map = allMaps.find(map => Number(map.id) === b.map_id)
         const battleRealm = REALMS[b.realm]
 
         try {
@@ -129,7 +129,7 @@ const processBattle = (b,allMaps) => {
 
                     let [ clanFromDb, wasClanCreated ] = await Clan.findOrCreate({
                         where: {
-                            id: clanFromJson.clan_id.toString()
+                            id: clanFromJson.clan_id
                         },
                         defaults: {
                             name: clanFromJson.claninfo.name,
@@ -152,7 +152,7 @@ const processBattle = (b,allMaps) => {
                             isDisbanded: clanFromJson.claninfo.disbanded,
                             tag: clanFromJson.claninfo.tag,
                             memberCount: clanFromJson.claninfo.members_count,
-                            realmId: clanRealm.id.toString(),
+                            realmId: clanRealm.id,
                             color: clanFromJson.claninfo.color,
                             asOf: finishedAt
                         })
@@ -161,7 +161,7 @@ const processBattle = (b,allMaps) => {
                     // todo: does this need to be findOrCreate?  if the battle is being created, can we assume ClanResults are also new?
                     const [createdClanResult, wasClanResultCreated] = await ClanResult.findOrCreate({
                         where: {
-                            id: clanFromJson.id.toString(),
+                            id: clanFromJson.id,
                         },
                         defaults: {
                             division: clanFromJson.division,
@@ -192,7 +192,7 @@ const processBattle = (b,allMaps) => {
                             }
 
                             const stageToCreate = {
-                                id: clanFromJson.stage.id.toString(),
+                                id: clanFromJson.stage.id,
                                 battles: clanFromJson.stage.battles,
                                 lossCount,
                                 target: clanFromJson.stage.target,
@@ -216,11 +216,11 @@ const processBattle = (b,allMaps) => {
 
                             let [ playerFromDb, wasPlayerCreated ] = await Player.findOrCreate({
                                 where: {
-                                    id: playerFromJson.spa_id.toString()
+                                    id: playerFromJson.spa_id
                                 },
                                 defaults: {
                                     name: playerFromJson.name,
-                                    clanId: clanFromDb.id.toString(),
+                                    clanId: clanFromDb.id,
                                     realmId: clanRealm.id,
                                     asOf: finishedAt
                                 }
@@ -233,19 +233,19 @@ const processBattle = (b,allMaps) => {
                             else if(!wasPlayerCreated && playerFromDb.asOf < finishedAt){
                                 updateModelInstance(playerFromDb, {
                                         name: playerFromJson.name,
-                                        clanId: clanFromDb.id.toString(),
+                                        clanId: clanFromDb.id,
                                         asOf: finishedAt
                                     })
                             }
 
                             let playerResultInstance = {
-                                id: `B${battleId}P${playerFromDb.id}`,
+                                // id: `B${battleId}P${playerFromDb.id}`,
                                 survived: playerFromJson.survived,
                                 battleId,
-                                clanId: clanFromDb.id.toString(),
-                                clanResultId: createdClanResult.id.toString(),
-                                playerId: playerFromDb.id.toString(),
-                                shipId: playerFromJson.vehicle_id.toString(),
+                                clanId: clanFromDb.id,
+                                clanResultId: createdClanResult.id,
+                                playerId: playerFromDb.id,
+                                shipId: playerFromJson.vehicle_id,
                                 isPrivate
                             }
 

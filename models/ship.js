@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     tier: DataTypes.INTEGER,
 
     // foreign keys
-    shipClassId: DataTypes.STRING,
-    nationId: DataTypes.STRING,
+    shipClassId: DataTypes.BIGINT,
+    nationId: DataTypes.BIGINT,
 
   }, {
     sequelize,

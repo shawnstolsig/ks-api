@@ -40,7 +40,7 @@ const createShips = (req, res, next) => {
     Object.keys(ships).forEach(async (ship) => {
         counter++
         await Ship.create({
-            id: ship,
+            id: Number(ship),
             name: ships[ship].name,
             tier: ships[ship].tier,
             nationId: NATIONS[ships[ship].nation],

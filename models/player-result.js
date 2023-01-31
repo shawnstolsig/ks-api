@@ -33,11 +33,11 @@ module.exports = (sequelize, DataTypes) => {
     isPrivate: DataTypes.BOOLEAN,
 
     // foreign keys
-    battleId: DataTypes.STRING,
-    clanId: DataTypes.STRING,
-    clanResultId: DataTypes.STRING,
-    playerId: DataTypes.STRING,
-    shipId: DataTypes.STRING,
+    battleId: DataTypes.BIGINT,
+    clanId: DataTypes.BIGINT,
+    clanResultId: DataTypes.BIGINT,
+    playerId: DataTypes.BIGINT,
+    shipId: DataTypes.BIGINT,
 
   }, {
     sequelize,

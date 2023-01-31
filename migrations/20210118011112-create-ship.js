@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       name: {
         type: Sequelize.STRING
@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       shipClassId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       nationId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       abbreviation: {
         type: Sequelize.STRING

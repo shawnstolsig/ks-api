@@ -6,13 +6,13 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       mapId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       realmId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       finishedAt: {
         type: Sequelize.DATE
@@ -24,10 +24,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       arenaId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       clusterId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       createdAt: {
         allowNull: false,

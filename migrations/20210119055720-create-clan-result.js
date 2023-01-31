@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       division: {
         type: Sequelize.INTEGER
@@ -27,10 +27,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       clanId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       battleId: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       isPrivate: {
         type: Sequelize.BOOLEAN
